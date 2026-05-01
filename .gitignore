@@ -1,10 +1,3 @@
-<<<<<<< Updated upstream
-# ========================
-# IDE / EDITORES
-# ========================
-.vscode/
-.idea/
-=======
 # IDE y Editores
 .vscode/
 .idea/
@@ -52,43 +45,12 @@ build/
 .settings/
 .metadata/
 bin/
-<<<<<<< Updated upstream
-.DS_Store
 
-# ========================
-# SPRING (Servidor)
-# ========================
-Servidor/target/
-Servidor/.mvn/wrapper/maven-wrapper.jar
-
-# ========================
-# REACT (Cliente)
-# ========================
-Cliente/node_modules/
-Cliente/dist/
-Cliente/dist-ssr/
-Cliente/*.local
-
-# ========================
-# LOGS
-# ========================
-logs/
-=======
-
-# Logs
-logs
->>>>>>> Stashed changes
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-<<<<<<< Updated upstream
-
-# ========================
-# OTROS
-# ========================
-=======
 lerna-debug.log*
 
 node_modules
@@ -106,9 +68,4 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sln
-<<<<<<< Updated upstream
 *.sw?
-=======
-*.sw?
-node_modules/
->>>>>>> Stashed changes
