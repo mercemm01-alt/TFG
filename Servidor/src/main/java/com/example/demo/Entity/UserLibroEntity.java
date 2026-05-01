@@ -35,11 +35,6 @@ public class UserLibroEntity implements Serializable {
 	@ManyToOne
     @JoinColumn(name = "LIBRO_ID", nullable = false)
     private LibroEntity libroUser;
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 
 	public Long getIdUl() {
 		return idUl;
@@ -78,10 +73,5 @@ public class UserLibroEntity implements Serializable {
 		return "UserLibroEntity [idUl=" + idUl + ", estado=" + estado + ", usuarioLibro=" + usuarioLibro
 				+ ", libroUser=" + libroUser + "]";
 	}
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
-	
-	
+
 }
