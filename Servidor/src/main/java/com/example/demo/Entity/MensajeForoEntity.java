@@ -32,12 +32,56 @@ private static final long serialVersionUID = 1L;
 	
 	@ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)
-    private UsuarioEntity usuarioMensaje;
+    private UserEntity usuarioMensaje;
 	
 	@ManyToOne
     @JoinColumn(name = "FORO_ID", nullable = false)
     private ForoEntity foroMensaje;
 
+	public long getIdMensajePriv() {
+		return idMensajePriv;
+	}
 
+	public void setIdMensajePriv(long idMensajePriv) {
+		this.idMensajePriv = idMensajePriv;
+	}
+
+	public String getContenidoMsF() {
+		return contenidoMsF;
+	}
+
+	public void setContenidoMsF(String contenidoMsF) {
+		this.contenidoMsF = contenidoMsF;
+	}
+
+	public LocalDateTime getFechaConteMsf() {
+		return fechaConteMsf;
+	}
+
+	public void setFechaConteMsf(LocalDateTime fechaConteMsf) {
+		this.fechaConteMsf = fechaConteMsf;
+	}
+
+	public UserEntity getUsuarioMensaje() {
+		return usuarioMensaje;
+	}
+
+	public void setUsuarioMensaje(UserEntity usuarioMensaje) {
+		this.usuarioMensaje = usuarioMensaje;
+	}
+
+	public ForoEntity getForoMensaje() {
+		return foroMensaje;
+	}
+
+	public void setForoMensaje(ForoEntity foroMensaje) {
+		this.foroMensaje = foroMensaje;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
 
 }

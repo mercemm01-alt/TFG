@@ -1,0 +1,152 @@
+/* VARIABLES GLOBALES */
+:root {
+    --lt-normal:'Cantora One', sans-serif;
+    --cl-blanco:#fff;
+    --cl-negro: #000;
+    --cl-fondo: #f1f0eb;
+    --cl-sec: #644842;
+    --cl-bt:  #877C7B;
+    --cl-bt-elim: #B16D6D;
+    --cl-nav: #C3C1C1;
+    --cl-fondo-transparente: rgb(255 255 255 / 85%);
+    --cl-enlace: #0870e7;
+    --sombra-suave: 0 0 0.625rem rgb(0 0 0 /30%);
+    --sombra-media: 0 0 0.9375rem rgb(0 0 0 /30%);
+}
+
+/* RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* FONDO DE PANTALLA */
+
+body {
+    font-family: var(--lt-normal);
+    min-height: 100vh;
+    background: url('/Recursos/Img/fondoAgustadoColor.jpg') no-repeat center top;
+    background-size: cover;
+    color: var(--cl-negro);
+}
+
+/* CONTENEDOR PRESENTACIÓN */
+
+.nuestra-pagina {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: var(--cl-fondo-transparente);
+    padding: 1.5rem 1.8rem;
+    border-radius: 15px;
+    box-shadow: var(--sombra-suave);
+}
+
+.nuestra-pagina img {
+    width: 15rem;
+    margin-bottom: 0.9rem;
+}
+
+.nuestra-pagina p {
+    font-size: 1.1rem;
+    max-width: 15.6rem;
+    line-height: 1.4;
+    font-family: 'Cantora One', sans-serif;
+    font-weight: 600;
+}
+
+/* CONTENEDOR LOGIN */
+.inicio-sesion {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    width: 20rem;
+    padding: 2.5rem 1.8rem;
+    text-align: center;
+    background-color: var(--cl-fondo-transparente);
+    border-radius: 15px;
+    box-shadow: var(--sombra-media);
+}
+
+/* FORMULARIO */
+.inicio-sesion form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.94rem;
+}
+
+/* CAMPOS INPUT */
+.campo {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0.25rem 0.62rem;
+    background-color: var(--cl-blanco);
+    border: 1px solid var(--cl-nav);
+    border-radius: 5px;
+}
+
+.campo svg {
+    color: var(--cl-negro);
+    width: 2rem;
+    height: 2.2rem;
+    margin-right: 0.5rem;
+}
+
+.campo input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1rem;
+}
+
+
+
+/* ENLACE */
+.enlace {
+    margin-top: 0.62rem;
+    color: var(--cl-enlace);
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+/* BOTÓN */
+.boton button {
+    width: 100%;
+    margin-top: 0.62rem;
+    padding: 0.62rem;
+    color: var(--cl-blanco);
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: var(--cl-bt);
+    font-size: 1rem;
+}
+
+.inicio-sesion a:hover {
+    text-decoration: underline;
+}
+
+.condiciones {
+    font-family: var(--lt-normal);
+    color: var(--cl-negro);
+}
+
+input, button, textarea {
+    font-family: var(--lt-normal);
+}
+
+@media screen and (width <= 800px){
+    .nuestra-pagina{
+        display: none;
+    }
+}
+
