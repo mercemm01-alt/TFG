@@ -36,7 +36,6 @@ build/
 
 ### IntelliJ IDEA ###
 .idea
->>>>>>> Stashed changes
 *.iws
 *.iml
 *.ipr
@@ -63,7 +62,6 @@ dist-ssr
 !.vscode/extensions.json
 .idea
 .DS_Store
->>>>>>> Stashed changes
 *.suo
 *.ntvs*
 *.njsproj
