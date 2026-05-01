@@ -34,11 +34,63 @@ public class OpinionEntity implements Serializable{
 	
 	@ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)
-    private UsuarioEntity usuarioOpinion;
+    private UserEntity usuarioOpinion;
 	
 	@ManyToOne
 	@JoinColumn(name="LIBRO_ID", nullable = false)
 	private LibroEntity libroOpinio;
+
+	public long getIdOpinion() {
+		return idOpinion;
+	}
+
+	public void setIdOpinion(long idOpinion) {
+		this.idOpinion = idOpinion;
+	}
+
+	public String getComentario() {
+		return comentario;
+	}
+
+	public void setComentario(String comentario) {
+		this.comentario = comentario;
+	}
+
+	public int getValoracion() {
+		return valoracion;
+	}
+
+	public void setValoracion(int valoracion) {
+		this.valoracion = valoracion;
+	}
+
+	public LocalDateTime getFechaComent() {
+		return fechaComent;
+	}
+
+	public void setFechaComent(LocalDateTime fechaComent) {
+		this.fechaComent = fechaComent;
+	}
+
+	public UserEntity getUsuarioOpinion() {
+		return usuarioOpinion;
+	}
+
+	public void setUsuarioOpinion(UserEntity usuarioOpinion) {
+		this.usuarioOpinion = usuarioOpinion;
+	}
+
+	public LibroEntity getLibroOpinio() {
+		return libroOpinio;
+	}
+
+	public void setLibroOpinio(LibroEntity libroOpinio) {
+		this.libroOpinio = libroOpinio;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	
 	

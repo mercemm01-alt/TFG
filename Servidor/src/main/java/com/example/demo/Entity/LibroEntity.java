@@ -48,8 +48,84 @@ public class LibroEntity implements Serializable {
 	// Libro - Opinion
 	@OneToMany(mappedBy="libroOpinio")
 	private Set<OpinionEntity> opinionesLibro = new HashSet<>();
-	
 
+	public Long getIdLibro() {
+		return idLibro;
+	}
+
+	public void setIdLibro(Long idLibro) {
+		this.idLibro = idLibro;
+	}
+
+	public String getIsbn() {
+		return isbn;
+	}
+
+	public void setIsbn(String isbn) {
+		this.isbn = isbn;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public String getAutor() {
+		return autor;
+	}
+
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+
+	public String getEditorial() {
+		return editorial;
+	}
+
+	public void setEditorial(String editorial) {
+		this.editorial = editorial;
+	}
+
+	public int getNumPaginas() {
+		return numPaginas;
+	}
+
+	public void setNumPaginas(int numPaginas) {
+		this.numPaginas = numPaginas;
+	}
+
+	public String getSinopsis() {
+		return sinopsis;
+	}
+
+	public void setSinopsis(String sinopsis) {
+		this.sinopsis = sinopsis;
+	}
+
+	public Set<UserLibroEntity> getUserLibro() {
+		return userLibro;
+	}
+
+	public void setUserLibro(Set<UserLibroEntity> userLibro) {
+		this.userLibro = userLibro;
+	}
+
+	public Set<OpinionEntity> getOpinionesLibro() {
+		return opinionesLibro;
+	}
+
+	public void setOpinionesLibro(Set<OpinionEntity> opinionesLibro) {
+		this.opinionesLibro = opinionesLibro;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	
 	
 	
 	

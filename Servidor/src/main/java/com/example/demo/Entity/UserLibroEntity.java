@@ -30,14 +30,49 @@ public class UserLibroEntity implements Serializable {
 	
 	@ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)
-    private UsuarioEntity usuarioLibro;
+    private UserEntity usuarioLibro;
 	
 	@ManyToOne
     @JoinColumn(name = "LIBRO_ID", nullable = false)
     private LibroEntity libroUser;
-	
 
-	
+	public Long getIdUl() {
+		return idUl;
+	}
+
+	public void setIdUl(Long idUl) {
+		this.idUl = idUl;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
+	public UserEntity getUsuarioLibro() {
+		return usuarioLibro;
+	}
+
+	public void setUsuarioLibro(UserEntity usuarioLibro) {
+		this.usuarioLibro = usuarioLibro;
+	}
+
+	public LibroEntity getLibroUser() {
+		return libroUser;
+	}
+
+	public void setLibroUser(LibroEntity libroUser) {
+		this.libroUser = libroUser;
+	}
+
+	@Override
+	public String toString() {
+		return "UserLibroEntity [idUl=" + idUl + ", estado=" + estado + ", usuarioLibro=" + usuarioLibro
+				+ ", libroUser=" + libroUser + "]";
+	}
 	
 	
 }

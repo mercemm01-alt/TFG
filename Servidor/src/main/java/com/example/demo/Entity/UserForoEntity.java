@@ -24,11 +24,39 @@ private static final long serialVersionUID = 1L;
 	
 	@ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)
-    private UsuarioEntity creador;
+    private UserEntity creador;
 	
 	@ManyToOne
     @JoinColumn(name = "FORO_ID", nullable = false)
     private ForoEntity foro;
+
+	public long getIdUf() {
+		return idUf;
+	}
+
+	public void setIdUf(long idUf) {
+		this.idUf = idUf;
+	}
+
+	public UserEntity getCreador() {
+		return creador;
+	}
+
+	public void setCreador(UserEntity creador) {
+		this.creador = creador;
+	}
+
+	public ForoEntity getForo() {
+		return foro;
+	}
+
+	public void setForo(ForoEntity foro) {
+		this.foro = foro;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	
 

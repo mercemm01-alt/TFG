@@ -34,10 +34,54 @@ public class ForoEntity implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name = "USER_ID", nullable = false)
-	private UsuarioEntity creador;
+	private UserEntity creador;
 	
 	@OneToMany(mappedBy="foroMensaje")
 	private Set<MensajeForoEntity> mensajesEnviadosF = new HashSet<>();
+
+	public long getIdForo() {
+		return idForo;
+	}
+
+	public void setIdForo(long idForo) {
+		this.idForo = idForo;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public LocalDate getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(LocalDate fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
+
+	public UserEntity getCreador() {
+		return creador;
+	}
+
+	public void setCreador(UserEntity creador) {
+		this.creador = creador;
+	}
+
+	public Set<MensajeForoEntity> getMensajesEnviadosF() {
+		return mensajesEnviadosF;
+	}
+
+	public void setMensajesEnviadosF(Set<MensajeForoEntity> mensajesEnviadosF) {
+		this.mensajesEnviadosF = mensajesEnviadosF;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	
 
