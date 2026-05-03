@@ -7,8 +7,10 @@ import com.example.demo.Entity.UserEntity;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
+	
+	Optional<UserEntity> findByIdUser(Long idUser);
 
-    Optional<UserEntity> findByUser(String user);
+    //Optional<UserEntity> findByUser(String user);
     
     Optional<UserEntity> findByUserAndContrasena(String user, String contrasena);
 

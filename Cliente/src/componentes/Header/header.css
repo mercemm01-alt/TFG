@@ -1,0 +1,133 @@
+/* HEADER */
+.banner {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.navbar{
+    background-color: var(--cl-nav);
+}
+
+.menu{
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    width: 100%;
+}
+
+.abrir-menu, .cerrar-menu{
+    margin-left: auto;
+    display: none;
+}
+
+.logo img{
+    height: 4rem;
+}
+
+.icono-menu{
+    width: 40px;
+    height: 40px;
+    color: var(--cl-negro);
+}
+
+.icono-x{
+    width: 30px;
+    height: 30px;
+    color: var(--cl-blanco);
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 4rem;
+}
+
+.link-nav{
+    position: relative;
+    text-decoration: none;
+    white-space: nowrap;
+    color: var(--cl-negro);
+    font-weight: 500;
+}
+
+.link-nav::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: var(--cl-negro);
+    transition: width 0.3s ease;
+}
+
+.link-nav:hover::after {
+    width: 100%;
+}
+
+.buscador {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 800px;
+    padding: 0.25rem 0.6rem;
+    background-color: var(--cl-blanco);
+    max-width: 290px;
+}
+
+.bus {
+    border: none;
+    outline: none;
+    padding: 0.4rem 0.5rem;
+}
+
+.lupa{
+    background-color: var(--cl-blanco);
+    border: none;
+    padding-bottom: 0.4rem;
+    cursor: pointer;
+}
+
+.lupa img{
+    margin-right: 18px;
+}
+
+/* 🔥 RESPONSIVE MENU */
+@media (max-width: 768px) {
+
+    .abrir-menu {
+        display: block;
+    }
+
+    .links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: var(--cl-nav);
+        width: 100%;
+        padding: 1rem;
+        gap: 2rem;
+    }
+
+    .links.visible {
+        display: flex;
+    }
+
+    .cerrar-menu {
+        display: block;
+        align-self: flex-end;
+    }
+}
