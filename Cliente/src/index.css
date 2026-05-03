@@ -1,0 +1,35 @@
+/* VARIABLES GLOBALES */
+:root {
+    --lt-normal:'Cantora One', sans-serif;
+    --cl-blanco:#fff;
+    --cl-negro: #000;
+    --cl-fondo: #f1f0eb;
+    --cl-sec: #644842;
+    --cl-bt:  #877C7B;
+    --cl-bt-elim: #B16D6D;
+    --cl-nav: #C3C1C1;
+    --cl-fondo-transparente: rgb(255 255 255 / 85%);
+    --cl-enlace: #0870e7;
+    --sombra-suave: 0 0 0.625rem rgb(0 0 0 /30%);
+    --sombra-media: 0 0 0.9375rem rgb(0 0 0 /30%);
+}
+
+/* RESET GLOBAL */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: var(--lt-normal);
+    font-size: 1.2rem;
+    background-color: var(--cl-fondo);
+}
+
+/* Botones globales */
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}

@@ -48,6 +48,9 @@ public class LibroEntity implements Serializable {
 	// Libro - Opinion
 	@OneToMany(mappedBy="libroOpinio")
 	private Set<OpinionEntity> opinionesLibro = new HashSet<>();
+	
+	@OneToMany(mappedBy = "libroGenero")
+	private Set<LibroGeneroEntity> generosLibro = new HashSet<>();
 
 	public Long getIdLibro() {
 		return idLibro;

@@ -46,7 +46,7 @@ function Login() {
     };
 
     return(
-        <main>
+        <main className='login-registre'>
             <div className="nuestra-pagina">
                 <img src="/Recursos/Img/Logo22.png" alt="logo" />
                 <p>¿Estas preparado para adentrarte en el mundo de los libros?</p>
@@ -110,7 +110,7 @@ function Login() {
                     <a className="enlace" href="/registro">
                         ¿No tienes cuenta? Regístrate ahora
                     </a>
-
+                    
                 </form>
             </div>
         </main>

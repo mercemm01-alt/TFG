@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,6 +37,14 @@ public class UserEntity  implements Serializable{
 	@Column(name="FECHA_NACIMIENTO", nullable = false)
 	private LocalDate fechaNacimiento;
 	
+	@Column(name="IMAGEN")
+	private String imagenUser;
+	
+	@Column(name="DESCRIPCION", nullable = false)
+	private String descripcion = "";
+	
+	
+	
 	// User - Libros N:M (USER_LIBRO)
 	@OneToMany(mappedBy="usuarioLibro")
 	private Set<UserLibroEntity> userLibro = new HashSet<>();
@@ -53,6 +62,9 @@ public class UserEntity  implements Serializable{
 	
 	@OneToMany(mappedBy="receptor")
 	private Set<MensajePrivadoEntity> mensajesRecibidos = new HashSet<>();
+	
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<UserGeneroEntity> userGeneros = new HashSet<>();
 
 	public long getIdUser() {
 		return idUser;
@@ -88,6 +100,22 @@ public class UserEntity  implements Serializable{
 
 	public LocalDate getFechaNacimiento() {
 		return fechaNacimiento;
+	}
+
+	public String getImagenUser() {
+		return imagenUser;
+	}
+
+	public void setImagenUser(String imagenUser) {
+		this.imagenUser = imagenUser;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
@@ -136,6 +164,22 @@ public class UserEntity  implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Set<UserGeneroEntity> getUserGeneros() {
+		return userGeneros;
+	}
+
+	public void setUserGeneros(Set<UserGeneroEntity> userGeneros) {
+		this.userGeneros = userGeneros;
+	}
+
+	@Override
+	public String toString() {
+		return "UserEntity [idUser=" + idUser + ", user=" + user + ", correo=" + correo + ", contrasena=" + contrasena
+				+ ", fechaNacimiento=" + fechaNacimiento + ", imagenUser=" + imagenUser + ", descripcion=" + descripcion
+				+ ", userLibro=" + userLibro + ", creadorForo=" + creadorForo + ", opinionUser=" + opinionUser
+				+ ", mensajesEnviadosP=" + mensajesEnviadosP + ", mensajesRecibidos=" + mensajesRecibidos + "]";
 	}
 	
 	

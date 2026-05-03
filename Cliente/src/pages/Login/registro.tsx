@@ -63,7 +63,7 @@ function Registro() {
     };
 
     return (
-        <main>
+        <main className='login-registre'>
             <div className="nuestra-pagina">
                 <img src="/Recursos/Img/Logo22.png" alt="logo" />
                 <p>¿Estas preparado para adentrarte en el mundo de los libros?</p>
