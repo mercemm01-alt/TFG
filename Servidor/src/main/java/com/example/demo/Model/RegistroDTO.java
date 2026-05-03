@@ -3,7 +3,7 @@ package com.example.demo.Model;
 import java.time.LocalDate;
 
 public class RegistroDTO {
-	
+	private Long idUser;
 	private String user;
 	private String correo;
     private String contrasena;
@@ -11,10 +11,19 @@ public class RegistroDTO {
     
 	public RegistroDTO() {}
 
-	public RegistroDTO(String user, String correo,LocalDate fechaNacimiento) {
+	public RegistroDTO(Long idUser, String user, String correo,LocalDate fechaNacimiento) {
+		this.idUser = idUser;
 		this.user = user;
 		this.correo = correo;
 		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public Long getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(Long idUser) {
+		this.idUser = idUser;
 	}
 
 	public String getUser() {
