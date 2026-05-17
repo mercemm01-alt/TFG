@@ -1,5 +1,8 @@
 package com.example.demo.Services.Implementation;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -7,6 +10,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.Entity.GeneroEntity;
 import com.example.demo.Entity.UserEntity;
@@ -51,6 +55,7 @@ public class UserServiceImplement implements UserService {
         nuevoUsuario.setCorreo(dtoRegistro.getCorreo());
         nuevoUsuario.setContrasena(dtoRegistro.getContrasena());
         nuevoUsuario.setFechaNacimiento(dtoRegistro.getFechaNacimiento());
+        nuevoUsuario.setFechaCambioUser(LocalDate.now());
         
         usuarioRepository.save(nuevoUsuario);
         
@@ -58,7 +63,8 @@ public class UserServiceImplement implements UserService {
         		nuevoUsuario.getIdUser(),
         		nuevoUsuario.getUser(),
         		nuevoUsuario.getCorreo(),
-        		nuevoUsuario.getFechaNacimiento());
+        		nuevoUsuario.getFechaNacimiento(),
+        		nuevoUsuario.getFechaCambioUser());
         		
     }
 
@@ -91,30 +97,56 @@ public class UserServiceImplement implements UserService {
 	}
 
 	@Override
-	public InterfaceUserDTO actualizarPerfil(InterfaceUserDTO dtoActualizarPerfil) {
+	public InterfaceUserDTO actualizarPerfil(InterfaceUserDTO dtoActualizarPerfil, MultipartFile imagen) throws Exception {
 		
 		UserEntity userUpdate = usuarioRepository.findByIdUser(dtoActualizarPerfil.getIdUser())
 				.orElseThrow(()-> new RuntimeException("Usuario no encontrado"));
 		
 		// Nombre
 		if(!dtoActualizarPerfil.getUser().equals(userUpdate.getUser())) {
-			userUpdate.setUser(dtoActualizarPerfil.getUser());
+			if (userUpdate.getFechaCambioUser() != null &&
+			        userUpdate.getFechaCambioUser().plusMonths(6).isAfter(LocalDate.now())) {
+
+			        throw new RuntimeException("Debes esperar 6 meses para cambiar el nombre de usuario");
+			    }
+
+			    // Actualizar nombre
+			    userUpdate.setUser(dtoActualizarPerfil.getUser());
+			    // Actualizar fecha
+			    userUpdate.setFechaCambioUser(LocalDate.now());
 		}
 		
 		// Contraseña
-		if(!dtoActualizarPerfil.getContrasena().equals(userUpdate.getContrasena())) {
-			userUpdate.setContrasena(dtoActualizarPerfil.getContrasena());
-		}
+		if(dtoActualizarPerfil.getContrasena() != null && !dtoActualizarPerfil.getContrasena().isBlank()) {
+
+				    if (!Pattern.matches(PASSWORD_REGEX, dtoActualizarPerfil.getContrasena())) {
+				        throw new RuntimeException("Contraseña inválida");
+				    }
+
+				    userUpdate.setContrasena(dtoActualizarPerfil.getContrasena());
+				}
 		
 		//Imagen
-		if(!dtoActualizarPerfil.getImagen().equals(userUpdate.getImagenUser())) {
-			userUpdate.setImagenUser(dtoActualizarPerfil.getImagen());
-		}
+		if (imagen != null && !imagen.isEmpty()) {
+
+	        String uploadDir = "uploads/img/";
+
+	        Files.createDirectories(Paths.get(uploadDir));
+
+	        String nombreImagen = imagen.getOriginalFilename();
+
+	        String rutaCompleta = uploadDir + nombreImagen;
+
+	        Files.write(
+	                Paths.get(rutaCompleta),
+	                imagen.getBytes()
+	        );
+
+	        userUpdate.setImagenUser(nombreImagen);
+	    }
 		
 		// Descripcion
-		if(!dtoActualizarPerfil.getDescripcion().equals(userUpdate.getDescripcion())) {
 			userUpdate.setDescripcion(dtoActualizarPerfil.getDescripcion());
-		}
 		
 		 //Generos 
 		Set<String> generosActuales = userUpdate.getUserGeneros()
@@ -143,7 +175,8 @@ public class UserServiceImplement implements UserService {
 			
 			userUpdate.getUserGeneros().add(nuevo);
 		}
-
+		
+		usuarioRepository.save(userUpdate);
 		return userMapper.toDTO(userUpdate);
 	}
 

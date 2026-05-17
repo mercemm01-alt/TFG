@@ -1,161 +1,210 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { apiFetch } from "../../services/api";
-import type { UserDTO } from '../../types/editPerfilDto';
 //import "./editarPerfil.css";
 
 function EditarPerfil() {
 
-    const [formData, setFormData] = useState<UserDTO>({
-        idUser: 0,
+    const [formData, setFormData] = useState({
         user: "",
         contrasena: "",
-        imagen: "",
+        confirmarContrasena: "",
         descripcion: "",
-        generos: []
+        generos: [] as string[]
     });
 
-    const [generoInput, setGeneroInput] = useState("");
+    const [imagen, setImagen] = useState<File | null>(null);
     const [error, setError] = useState("");
-
     const navigate = useNavigate();
-
     const idUser = Number(localStorage.getItem("idUser"));
+    console.log("ID USER:", idUser);
+console.log("LOCAL:", localStorage.getItem("idUser"));
+    const [preview, setPreview] = useState("");
+
+    const [generosDisponibles, setGenerosDisponibles] = useState<string[]>([]);
 
     useEffect(() => {
         const cargarUsuario = async () => {
-        try {
-            const data = await apiFetch(`/usuarios/${idUser}`);
-            setFormData(data);
-        } catch (err: any) {
-            setError("Error al cargar el perfil");
-        }
+            try {
+                const data = await apiFetch(`/verPerfil/${idUser}`);
+                setFormData({
+                    user: data.user,
+                    contrasena: "",
+                    confirmarContrasena: "",
+                    descripcion: data.descripcion,
+                    generos: data.generos || []
+                });
+                setPreview(`http://localhost:8080/img/${data.imagen}`);
+            } catch {
+                setError("Error al cargar perfil");
+            }
         };
 
         if (idUser) cargarUsuario();
     }, [idUser]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    useEffect(() => {
+        const cargarGeneros = async () => {
+            try {
+                const data = await apiFetch("/libros/generos");
+                setGenerosDisponibles(data);
+            } catch {
+                setError("Error al cargar géneros");
+            }
+        };
+        cargarGeneros();
+    }, []);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=> {
         const { name, value } = e.target;
 
-        setFormData({
-        ...formData,
-        [name]: value
-        });
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
     };
 
-    const addGenero = () => {
-        if (generoInput && !formData.generos.includes(generoInput)) {
-        setFormData({
-            ...formData,
-            generos: [...formData.generos, generoInput]
-        });
-        setGeneroInput("");
-        }
+    // Toggle géneros tipo chip
+    const toggleGenero = (genero: string) => {
+        setFormData(prev => ({
+            ...prev,
+
+            generos: prev.generos.includes(genero)
+                ? prev.generos.filter(g => g !== genero)
+                : [...prev.generos, genero]
+        }));
     };
 
-    const removeGenero = (genero: string) => {
-        setFormData({
-        ...formData,
-        generos: formData.generos.filter(g => g !== genero)
-        });
-    };
-
-    const envio = async (e: React.FormEvent<HTMLFormElement>) => {
+    const envio = async (e: any) => {
         e.preventDefault();
         setError("");
 
+        // VALIDACIÓN CONTRASEÑA
+        if (formData.contrasena !== formData.confirmarContrasena) {
+            setError("Las contraseñas no coinciden");
+            return;
+        }
+
         try {
-        const data = await apiFetch(`/usuarios/${idUser}`, {
-            method: "PUT",
-            body: JSON.stringify(formData)
-        });
+            const dataEnviar = {
+                user: formData.user,
+                contrasena: formData.contrasena,
+                descripcion: formData.descripcion,
+                generos: formData.generos
+            };
 
-        console.log("ACTUALIZADO:", data);
+            const form = new FormData();
+            form.append("userJson", JSON.stringify(dataEnviar));
 
-        navigate("/"); // o perfil
+            if (imagen) {
+                form.append("imagen", imagen);
+            }
+
+            await fetch(`http://localhost:8080/api/editarPerfil/${idUser}`, {
+                method: "PUT",
+                body: form
+            });
+
+            navigate("/");
 
         } catch (err: any) {
-        setError(err.message || "Error al actualizar perfil");
+            setError(err.message || "Error al actualizar perfil");
         }
     };
 
     return (
         <form onSubmit={envio}>
 
-        <h2>Editar perfil</h2>
+            <h2>Editar perfil</h2>
+            {error && <p>{error}</p>}
 
-        {error && <p>{error}</p>}
+            {/* USER */}
+            <div>
+                <label>Nombre de usuario</label>
+                <input
+                    name="user"
+                    value={formData.user}
+                    onChange={handleChange}
+                />
+            </div>
 
-        {/* Usuario */}
-        <div>
-            <label>Nombre de usuario:</label>
-            <input
-            type="text"
-            name="user"
-            value={formData.user}
-            onChange={handleChange}
-            />
-        </div>
+            {/* PASSWORD */}
+            <div>
+                <label>Nueva contraseña</label>
+                <input
+                    type="password"
+                    name="contrasena"
+                    value={formData.contrasena}
+                    onChange={handleChange}
+                />
+            </div>
 
-        {/* Contraseña */}
-        <div>
-            <label>Contraseña:</label>
-            <input
-            type="password"
-            name="contrasena"
-            value={formData.contrasena}
-            onChange={handleChange}
-            />
-        </div>
+            <div>
+                <label>Confirmar contraseña</label>
+                <input
+                    type="password"
+                    name="confirmarContrasena"
+                    value={formData.confirmarContrasena}
+                    onChange={handleChange}
+                />
+            </div>
 
-        {/* Imagen */}
-        <div>
-            <label>Imagen (URL):</label>
-            <input
-            type="text"
-            name="imagen"
-            value={formData.imagen}
-            onChange={handleChange}
-            />
-        </div>
+            {/* IMAGEN */}
+            <div>
+                <label>Imagen</label>
+                <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
 
-        {/* Descripción */}
-        <div>
-            <label>Descripción:</label>
-            <textarea
-            name="descripcion"
-            value={formData.descripcion}
-            onChange={handleChange}
-            />
-        </div>
+                        if (e.target.files && e.target.files[0]) {
+                            const file = e.target.files[0];
+                            setImagen(file);
+                            setPreview(URL.createObjectURL(file));
+                        }
+                    }}
+                />
+                {preview && (
+                    <img
+                        src={preview}
+                        alt="preview"
+                        width="150"
+                    />
+                )}
+            </div>
 
-        {/* Géneros */}
-        <div>
-            <label>Géneros:</label>
+            {/* DESCRIPCIÓN */}
+            <div>
+                <label>Descripción</label>
+                <textarea
+                    name="descripcion"
+                    value={formData.descripcion}
+                    onChange={handleChange}
+                />
+            </div>
 
-            <input
-            type="text"
-            value={generoInput}
-            onChange={(e) => setGeneroInput(e.target.value)}
-            />
-            <button type="button" onClick={addGenero}>
-            Añadir
-            </button>
+            {/* GENEROS */}
+            <div>
+                <label>Géneros</label>
 
-            <ul>
-            {formData.generos.map((g, index) => (
-                <li key={index}>
-                {g}
-                <button type="button" onClick={() => removeGenero(g)}>
-                    X
-                </button>
-                </li>
-            ))}
-            </ul>
-        </div>
+                <div>
+                    {generosDisponibles.map(g => (
+                        <button
+                            type="button"
+                            key={g}
+                            onClick={() => toggleGenero(g)}
+                            style={{
+                                margin: "5px",
+                                background: formData.generos.includes(g) ? "gray" : "lightgray"
+                            }}
+                        >
+                            {g}
+                        </button>
+                    ))}
+                </div>
+            </div>
 
-        <button type="submit">Guardar cambios</button>
+            <button type="submit">Guardar cambios</button>
 
         </form>
     );

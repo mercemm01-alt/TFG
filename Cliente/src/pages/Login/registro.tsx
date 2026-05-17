@@ -56,7 +56,7 @@ function Registro() {
             localStorage.setItem("user", data.user);
 
             //Redirige
-            navigate("/");
+            navigate("/editarPerfil");
         } catch (err: any) {
             setError(err.message || "Error en el registro");
         }
