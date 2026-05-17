@@ -9,8 +9,6 @@ import com.example.demo.Entity.UserEntity;
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
 	
 	Optional<UserEntity> findByIdUser(Long idUser);
-
-    //Optional<UserEntity> findByUser(String user);
     
     Optional<UserEntity> findByUserAndContrasena(String user, String contrasena);
 

@@ -1,7 +1,6 @@
-export interface UserEditDTO {
+export interface UserPerfilDTO {
     idUser: number;
     user: string;
-    contrasena: string;
     imagen: string;
     descripcion: string;
     generos: string[];

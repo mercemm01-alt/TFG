@@ -8,14 +8,16 @@ public class RegistroDTO {
 	private String correo;
     private String contrasena;
     private LocalDate fechaNacimiento;
+    private LocalDate fechaCambioUser;
     
 	public RegistroDTO() {}
 
-	public RegistroDTO(Long idUser, String user, String correo,LocalDate fechaNacimiento) {
+	public RegistroDTO(Long idUser, String user, String correo,LocalDate fechaNacimiento, LocalDate fechaCambioUser) {
 		this.idUser = idUser;
 		this.user = user;
 		this.correo = correo;
 		this.fechaNacimiento = fechaNacimiento;
+		this.fechaCambioUser = fechaCambioUser;
 	}
 
 	public Long getIdUser() {
@@ -58,10 +60,18 @@ public class RegistroDTO {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
+	public LocalDate getFechaCambioUser() {
+		return fechaCambioUser;
+	}
+
+	public void setFechaCambioUser(LocalDate fechaCambioUser) {
+		this.fechaCambioUser = fechaCambioUser;
+	}
+
 	@Override
 	public String toString() {
-		return "RegistroDTO [user=" + user + ", correo=" + correo + ", contrasena=" + contrasena
-				+ ", fechaNacimiento=" + fechaNacimiento + "]";
+		return "RegistroDTO [idUser=" + idUser + ", user=" + user + ", correo=" + correo + ", contrasena=" + contrasena
+				+ ", fechaNacimiento=" + fechaNacimiento + ", fechaCambioUser=" + fechaCambioUser + "]";
 	}
 
 }

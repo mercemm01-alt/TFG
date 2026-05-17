@@ -1,0 +1,88 @@
+/* FOOTER */
+
+.footer {
+    background-color:var(--cl-negro);
+    color: var(--cl-blanco);
+    font-family: Inter, sans-serif;
+    padding: 40px 0 20px ;
+}
+
+.footer-container {
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: space-between;
+max-width: 900px;
+}
+
+/* CADA COLUMNA */
+.footer-legal,
+.footer-social {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* TÍTULOS */
+.footer-legal h3 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* LISTAS */
+.footer-legal ul {
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    margin-left: 125px;
+}
+
+.footer-legal ul li {
+    margin-bottom: 10px;
+}
+
+/* ENLACES */
+.footer-legal ul li a {
+    text-decoration: none;
+    color: var(--cl-blanco);
+    transition: color 0.3s ease;
+}
+
+.footer-legal ul li a:hover {
+    color: #B16D6D;
+}
+
+/* ICONOS REDES */
+.social-icons {
+    margin-top: 25px;
+    justify-content: center;
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons img {
+    width: 30px;
+    height: 30px;
+    filter: invert(1);
+    transition: transform 0.3s ease;
+}
+
+.social-icons img:hover {
+    transform: scale(1.1);
+}
+
+/* PARTE INFERIOR */
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #333;
+    margin-top: 30px;
+    padding-top: 20px;
+    font-size: 14px;
+}
+
+/* VALIDADOR */
+.footer p img {
+    margin-top: 15px;
+}

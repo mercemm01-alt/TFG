@@ -43,7 +43,8 @@ public class UserEntity  implements Serializable{
 	@Column(name="DESCRIPCION", nullable = false)
 	private String descripcion = "";
 	
-	
+	@Column(name="FECHA_CAMBIO_USER", nullable = false)
+	private LocalDate fechaCambioUser;
 	
 	// User - Libros N:M (USER_LIBRO)
 	@OneToMany(mappedBy="usuarioLibro")
@@ -122,6 +123,14 @@ public class UserEntity  implements Serializable{
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
+	public LocalDate getFechaCambioUser() {
+		return fechaCambioUser;
+	}
+
+	public void setFechaCambioUser(LocalDate fechaCambioUser) {
+		this.fechaCambioUser = fechaCambioUser;
+	}
+
 	public Set<UserLibroEntity> getUserLibro() {
 		return userLibro;
 	}
@@ -179,7 +188,8 @@ public class UserEntity  implements Serializable{
 		return "UserEntity [idUser=" + idUser + ", user=" + user + ", correo=" + correo + ", contrasena=" + contrasena
 				+ ", fechaNacimiento=" + fechaNacimiento + ", imagenUser=" + imagenUser + ", descripcion=" + descripcion
 				+ ", userLibro=" + userLibro + ", creadorForo=" + creadorForo + ", opinionUser=" + opinionUser
-				+ ", mensajesEnviadosP=" + mensajesEnviadosP + ", mensajesRecibidos=" + mensajesRecibidos + "]";
+				+ ", mensajesEnviadosP=" + mensajesEnviadosP + ", mensajesRecibidos=" + mensajesRecibidos 
+				+ ", fechaCambioUser=" +fechaCambioUser + "]";
 	}
 	
 	
