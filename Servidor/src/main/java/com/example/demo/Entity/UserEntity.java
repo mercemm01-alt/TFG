@@ -23,7 +23,7 @@ public class UserEntity  implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID_USER")
-	private long idUser;
+	private Long idUser;
 	
 	@Column(name="USUARIO", nullable = false, unique = true, length = 25)
 	private String user;
@@ -51,8 +51,8 @@ public class UserEntity  implements Serializable{
 	private Set<UserLibroEntity> userLibro = new HashSet<>();
 	
 	// User - Foro N:M (USER_FORO)
-	@OneToMany(mappedBy="creador")
-	private Set<UserForoEntity> creadorForo = new HashSet<>();
+	@OneToMany(mappedBy="usuario")
+	private Set<UserForoEntity> usuarioForo = new HashSet<>();
 	
 	// User - Opinion 1:N
 	@OneToMany(mappedBy="usuarioOpinion")
@@ -67,11 +67,11 @@ public class UserEntity  implements Serializable{
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<UserGeneroEntity> userGeneros = new HashSet<>();
 
-	public long getIdUser() {
+	public Long getIdUser() {
 		return idUser;
 	}
 
-	public void setIdUser(long idUser) {
+	public void setIdUser(Long idUser) {
 		this.idUser = idUser;
 	}
 
@@ -139,12 +139,12 @@ public class UserEntity  implements Serializable{
 		this.userLibro = userLibro;
 	}
 
-	public Set<UserForoEntity> getCreadorForo() {
-		return creadorForo;
+	public Set<UserForoEntity> getUsuarioForo() {
+		return usuarioForo;
 	}
 
-	public void setCreadorForo(Set<UserForoEntity> creadorForo) {
-		this.creadorForo = creadorForo;
+	public void setUsuarioForo(Set<UserForoEntity> usuarioForo) {
+		this.usuarioForo = usuarioForo;
 	}
 
 	public Set<OpinionEntity> getOpinionUser() {
@@ -187,10 +187,12 @@ public class UserEntity  implements Serializable{
 	public String toString() {
 		return "UserEntity [idUser=" + idUser + ", user=" + user + ", correo=" + correo + ", contrasena=" + contrasena
 				+ ", fechaNacimiento=" + fechaNacimiento + ", imagenUser=" + imagenUser + ", descripcion=" + descripcion
-				+ ", userLibro=" + userLibro + ", creadorForo=" + creadorForo + ", opinionUser=" + opinionUser
-				+ ", mensajesEnviadosP=" + mensajesEnviadosP + ", mensajesRecibidos=" + mensajesRecibidos 
-				+ ", fechaCambioUser=" +fechaCambioUser + "]";
+				+ ", fechaCambioUser=" + fechaCambioUser + ", userLibro=" + userLibro + ", usuarioForo=" + usuarioForo
+				+ ", opinionUser=" + opinionUser + ", mensajesEnviadosP=" + mensajesEnviadosP + ", mensajesRecibidos="
+				+ mensajesRecibidos + ", userGeneros=" + userGeneros + "]";
 	}
+
+
 	
 	
 	

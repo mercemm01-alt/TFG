@@ -20,30 +20,52 @@ private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID_UF")
-	private long idUf;
+	private Long idUf;
+	
+	@Column(name="SIGUIENDO")
+	private Boolean siguiendo = false;
+	
+	@Column(name="FAVORITO")
+	private Boolean favorito = false;
 	
 	@ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)
-    private UserEntity creador;
+    private UserEntity usuario;
 	
 	@ManyToOne
     @JoinColumn(name = "FORO_ID", nullable = false)
     private ForoEntity foro;
 
-	public long getIdUf() {
+	public Long getIdUf() {
 		return idUf;
 	}
 
-	public void setIdUf(long idUf) {
+	public void setIdUf(Long idUf) {
 		this.idUf = idUf;
 	}
 
-	public UserEntity getCreador() {
-		return creador;
+	public Boolean getSiguiendo() {
+		return siguiendo;
 	}
 
-	public void setCreador(UserEntity creador) {
-		this.creador = creador;
+	public void setSiguiendo(Boolean siguiendo) {
+		this.siguiendo = siguiendo;
+	}
+
+	public Boolean getFavorito() {
+		return favorito;
+	}
+
+	public void setFavorito(Boolean favorito) {
+		this.favorito = favorito;
+	}
+
+	public UserEntity getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(UserEntity usuario) {
+		this.usuario = usuario;
 	}
 
 	public ForoEntity getForo() {
@@ -56,6 +78,12 @@ private static final long serialVersionUID = 1L;
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "UserForoEntity [idUf=" + idUf + ", siguiendo=" + siguiendo + ", favorito=" + favorito + ", usuario="
+				+ usuario + ", foro=" + foro + "]";
 	}
 
 	

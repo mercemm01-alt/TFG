@@ -1,7 +1,7 @@
 package com.example.demo.Entity;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,26 +24,32 @@ public class ForoEntity implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID_FORO")
-	private long idForo;
+	private Long idForo;
 	
 	@Column(name="NOMBRE", unique = true, nullable = false, length = 25)
 	private String nombre;
 	
+	@Column(name="DESCRIPCION", nullable = false, length = 250)
+	private String descripcion;
+	
+	@Column(name="IMAGEN", length = 200)
+	private String img;
+	
 	@Column(name="FECHA_CREACION", nullable = false)
-	private LocalDate fechaCreacion;
+	private LocalDateTime fechaCreacion;
 	
 	@ManyToOne
-	@JoinColumn(name = "USER_ID", nullable = false)
+	@JoinColumn(name = "CREADOR_ID", nullable = false)
 	private UserEntity creador;
 	
 	@OneToMany(mappedBy="foroMensaje")
 	private Set<MensajeForoEntity> mensajesEnviadosF = new HashSet<>();
 
-	public long getIdForo() {
+	public Long getIdForo() {
 		return idForo;
 	}
 
-	public void setIdForo(long idForo) {
+	public void setIdForo(Long idForo) {
 		this.idForo = idForo;
 	}
 
@@ -51,15 +57,31 @@ public class ForoEntity implements Serializable{
 		return nombre;
 	}
 
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
-	public LocalDate getFechaCreacion() {
+	public LocalDateTime getFechaCreacion() {
 		return fechaCreacion;
 	}
 
-	public void setFechaCreacion(LocalDate fechaCreacion) {
+	public void setFechaCreacion(LocalDateTime fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 
@@ -83,8 +105,11 @@ public class ForoEntity implements Serializable{
 		return serialVersionUID;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "ForoEntity [idForo=" + idForo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", img=" + img
+				+ ", fechaCreacion=" + fechaCreacion + ", creador=" + creador + ", mensajesEnviadosF="
+				+ mensajesEnviadosF + "]";
+	}
 
-	
-	
 }

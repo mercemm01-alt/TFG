@@ -23,16 +23,19 @@ public class LibroEntity implements Serializable {
 	@Column(name="ID_LIBRO")
 	private Long idLibro;
 	
-	@Column(name="ISBN", nullable = false, unique = true, length = 20)
+	@Column(name="API_ID", unique = true, length = 20)
+	private String apiId;
+	
+	@Column(name="ISBN", unique = true, length = 20)
 	private String isbn;
 	
-	@Column(name="TITULO", nullable = false, length = 50)
+	@Column(name="TITULO", nullable = false, length = 300)
 	private String titulo;
 	
-	@Column(name="AUTOR", nullable = false, length = 100)
+	@Column(name="AUTOR", nullable = false, length = 300)
 	private String autor;
 	
-	@Column(name="EDITORIAL", nullable = false, length = 50)
+	@Column(name="EDITORIAL",  length = 250)
 	private String editorial;
 	
 	@Column(name="NUM_PAGINAS")
@@ -40,6 +43,21 @@ public class LibroEntity implements Serializable {
 	
 	@Column(name="SINOPSIS")
 	private String sinopsis;
+	
+	@Column(name="IMAGEN")
+	private String imagen;
+
+
+	@Column(name="FECHA_PUBLICACION")
+	private String fechaPublicacion;
+
+
+	@Column(name="VALORACION")
+	private Double valoracion;
+
+
+	@Column(name="TIPO")
+	private String tipo;
 	
 	// Libro - User N:M (USER_LIBRO)
 	@OneToMany(mappedBy="libroUser")
@@ -58,6 +76,14 @@ public class LibroEntity implements Serializable {
 
 	public void setIdLibro(Long idLibro) {
 		this.idLibro = idLibro;
+	}
+
+	public String getApiId() {
+		return apiId;
+	}
+
+	public void setApiId(String apiId) {
+		this.apiId = apiId;
 	}
 
 	public String getIsbn() {
@@ -108,6 +134,38 @@ public class LibroEntity implements Serializable {
 		this.sinopsis = sinopsis;
 	}
 
+	public String getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+	public String getFechaPublicacion() {
+		return fechaPublicacion;
+	}
+
+	public void setFechaPublicacion(String fechaPublicacion) {
+		this.fechaPublicacion = fechaPublicacion;
+	}
+
+	public Double getValoracion() {
+		return valoracion;
+	}
+
+	public void setValoracion(Double valoracion) {
+		this.valoracion = valoracion;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
 	public Set<UserLibroEntity> getUserLibro() {
 		return userLibro;
 	}
@@ -124,10 +182,27 @@ public class LibroEntity implements Serializable {
 		this.opinionesLibro = opinionesLibro;
 	}
 
+	public Set<LibroGeneroEntity> getGenerosLibro() {
+		return generosLibro;
+	}
+
+	public void setGenerosLibro(Set<LibroGeneroEntity> generosLibro) {
+		this.generosLibro = generosLibro;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "LibroEntity [idLibro=" + idLibro + ", apiId=" + apiId + ", isbn=" + isbn + ", titulo=" + titulo
+				+ ", autor=" + autor + ", editorial=" + editorial + ", numPaginas=" + numPaginas + ", sinopsis="
+				+ sinopsis + ", imagen=" + imagen + ", fechaPublicacion=" + fechaPublicacion + ", valoracion="
+				+ valoracion + ", tipo=" + tipo + ", userLibro=" + userLibro + ", opinionesLibro=" + opinionesLibro
+				+ ", generosLibro=" + generosLibro + "]";
+	}
+
 	
 	
 	

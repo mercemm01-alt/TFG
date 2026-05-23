@@ -21,14 +21,14 @@ private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID_MENSAJE_PRIVADO")
-	private long idMensajePriv;
+	@Column(name="ID_MENSAJE_FORO")
+	private Long idMensajeForo;
 	
 	@Column(name="CONTENIDO_MSF", nullable = false)
 	private String contenidoMsF;
 	
 	@Column(name="FECHA", nullable = false)
-	private LocalDateTime fechaConteMsf;
+	private LocalDateTime fecha;
 	
 	@ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)
@@ -38,12 +38,12 @@ private static final long serialVersionUID = 1L;
     @JoinColumn(name = "FORO_ID", nullable = false)
     private ForoEntity foroMensaje;
 
-	public long getIdMensajePriv() {
-		return idMensajePriv;
+	public Long getIdMensajeForo() {
+		return idMensajeForo;
 	}
 
-	public void setIdMensajePriv(long idMensajePriv) {
-		this.idMensajePriv = idMensajePriv;
+	public void setIdMensajeForo(Long idMensajeForo) {
+		this.idMensajeForo = idMensajeForo;
 	}
 
 	public String getContenidoMsF() {
@@ -54,12 +54,12 @@ private static final long serialVersionUID = 1L;
 		this.contenidoMsF = contenidoMsF;
 	}
 
-	public LocalDateTime getFechaConteMsf() {
-		return fechaConteMsf;
+	public LocalDateTime getFecha() {
+		return fecha;
 	}
 
-	public void setFechaConteMsf(LocalDateTime fechaConteMsf) {
-		this.fechaConteMsf = fechaConteMsf;
+	public void setFecha(LocalDateTime fecha) {
+		this.fecha = fecha;
 	}
 
 	public UserEntity getUsuarioMensaje() {

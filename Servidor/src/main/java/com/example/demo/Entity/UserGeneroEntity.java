@@ -20,7 +20,7 @@ public class UserGeneroEntity implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_UG")
-    private long idUg;
+    private Long idUg;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)
@@ -30,11 +30,11 @@ public class UserGeneroEntity implements Serializable{
     @JoinColumn(name = "GENERO_ID", nullable = false)
     private GeneroEntity genero;
 
-	public long getIdUg() {
+	public Long getIdUg() {
 		return idUg;
 	}
 
-	public void setIdUg(long idUg) {
+	public void setIdUg(Long idUg) {
 		this.idUg = idUg;
 	}
 

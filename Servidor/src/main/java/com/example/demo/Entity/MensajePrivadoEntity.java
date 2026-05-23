@@ -21,7 +21,7 @@ public class MensajePrivadoEntity implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID_MENSAJE_PRIVADO")
-	private long idMensajePriv;
+	private Long idMensajePriv;
 	
 	@Column(name="CONTENIDO_MSP", nullable = false)
 	private String contenidoMsP;
@@ -37,11 +37,11 @@ public class MensajePrivadoEntity implements Serializable{
     @JoinColumn(name = "RECEPTOR_ID", nullable = false)
     private UserEntity receptor;
 
-	public long getIdMensajePriv() {
+	public Long getIdMensajePriv() {
 		return idMensajePriv;
 	}
 
-	public void setIdMensajePriv(long idMensajePriv) {
+	public void setIdMensajePriv(Long idMensajePriv) {
 		this.idMensajePriv = idMensajePriv;
 	}
 

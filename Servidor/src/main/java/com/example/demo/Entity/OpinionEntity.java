@@ -21,7 +21,7 @@ public class OpinionEntity implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID_OPINION")
-	private long idOpinion;
+	private Long idOpinion;
 	
 	@Column(name="COMENTARIO")
 	private String comentario;
@@ -40,11 +40,11 @@ public class OpinionEntity implements Serializable{
 	@JoinColumn(name="LIBRO_ID", nullable = false)
 	private LibroEntity libroOpinio;
 
-	public long getIdOpinion() {
+	public Long getIdOpinion() {
 		return idOpinion;
 	}
 
-	public void setIdOpinion(long idOpinion) {
+	public void setIdOpinion(Long idOpinion) {
 		this.idOpinion = idOpinion;
 	}
 

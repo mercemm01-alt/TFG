@@ -5,6 +5,10 @@ import Login from './pages/Login/login';
 import Registro from './pages/Login/registro';
 import EditarPerfil from './pages/Perfil/editarPerfil';
 import Recomendaciones from './pages/Recomendaciones/recomendaciones';
+import InfoLibro from './pages/InfoLibros/infoLibros';
+import Foros from "./pages/Foro/foros";
+import ForoChat from "./pages/Foro/foroChat";
+import CrearForo from "./pages/Foro/crearForo";
 import Header from './componentes/Header/header';
 import Footer from './componentes/Footer/footer';
 
@@ -24,7 +28,11 @@ function AppContent() {
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
           <Route path="/editarPerfil" element={<EditarPerfil />} />
-          <Route path='/recomendaciones' element={<Recomendaciones/>}/>
+          <Route path="/recomendaciones" element={<Recomendaciones/>}/>
+          <Route path="/libro/:id" element={<InfoLibro/>}/>
+          <Route path="/foro" element={<Foros/>}/>
+          <Route path="/foro/:idForo" element={<ForoChat/>}/>
+          <Route path="/crear-foro" element={<CrearForo/>}/>
         </Routes>
       </main>
 

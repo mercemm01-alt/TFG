@@ -19,7 +19,7 @@ public class LibroGeneroEntity implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_LG")
-    private long idLg;
+    private Long idLg;
 
     @ManyToOne
     @JoinColumn(name = "LIBRO_ID", nullable = false)
@@ -29,11 +29,11 @@ public class LibroGeneroEntity implements Serializable{
     @JoinColumn(name = "GENERO_ID", nullable = false)
     private GeneroEntity genero;
 
-	public long getIdLg() {
+	public Long getIdLg() {
 		return idLg;
 	}
 
-	public void setIdLg(long idLg) {
+	public void setIdLg(Long idLg) {
 		this.idLg = idLg;
 	}
 

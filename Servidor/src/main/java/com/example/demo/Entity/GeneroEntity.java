@@ -21,7 +21,7 @@ public class GeneroEntity implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_GENERO")
-    private long idGenero;
+    private Long idGenero;
 
     @Column(name = "NOMBRE", unique = true, nullable = false, length = 50)
     private String nombre;
@@ -31,11 +31,11 @@ public class GeneroEntity implements Serializable{
 
     @OneToMany(mappedBy = "genero")
     private Set<LibroGeneroEntity> libros = new HashSet<>();
-	public long getIdGenero() {
+	public Long getIdGenero() {
 		return idGenero;
 	}
 
-	public void setIdGenero(long idGenero) {
+	public void setIdGenero(Long idGenero) {
 		this.idGenero = idGenero;
 	}
 

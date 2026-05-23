@@ -1,0 +1,151 @@
+.ficha-libro{
+    background-color:var(--cl-blanco);
+    padding:1rem;
+    margin-bottom:25px;
+    border-radius:8px;
+    box-shadow:0 4px 8px rgb(0 0 0 /50%);
+}
+
+/* IMAGEN */
+.tj-libro img{
+    width:100%;
+    max-width:280px;
+    height:350px;
+    object-fit:cover;
+    margin-left:8px;
+    border-radius:4px;
+}
+
+/* TITULO */
+.info-libro h3{
+    font-family:'Bebas Neue',sans-serif;
+    font-size:2.8rem;
+    margin-bottom:1rem;
+    text-transform:uppercase;
+}
+
+/* TABLA INFO */
+.info{
+    margin-top:1.6rem;
+    border-collapse:separate;
+    border-spacing:0 .6rem;
+}
+
+.info th{
+    text-align:left;
+    padding-right:1.5rem;
+    white-space:nowrap;
+}
+
+.info td{
+    font-family:'Noteworthy',sans-serif;
+}
+
+/* PARTE ABAJO */
+.parte-inferior{
+    display:flex;
+    align-items:flex-start;
+    margin-top:2rem;
+}
+
+/* SELECT */
+.estado-libro{
+    margin-top:10px;
+    margin-right:4rem;
+    min-width:250px;
+}
+
+.estado-libro select{
+    border:none;
+    width:100%;
+    padding:.8rem;
+    background-color:var(--cl-bt);
+    color:var(--cl-blanco);
+    border-radius:55px;
+    font-size:1.2rem;
+    text-align:center;
+}
+
+/* SINOPSIS */
+.sinopsis{
+    font-family:'Noteworthy',sans-serif;
+    margin-right:6rem;
+    text-align:justify;
+    line-height:1.8;
+    flex:1;
+}
+
+/* NOTAS */
+.notas{
+    margin-top:2rem;
+    margin-left:310px;
+}
+
+.notas input{
+    width:260px;
+    padding:.5rem;
+    border:1px solid #bbb;
+}
+
+/* ESTRELLAS */
+.star{
+    color:#bbb;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.star:hover,
+.star.checked{
+    color:rgb(231,201,31);
+}
+
+/* RESPONSIVE */
+@media screen and (width<=992px){
+    .tj-libro{
+        text-align:center;
+    }
+    .tj-libro img{
+        display:block;
+        margin:auto;
+    }
+
+    .info-libro{
+        text-align:center;
+    }
+
+    .info-libro table{
+        margin:auto;
+    }
+
+    .parte-inferior{
+        display:block;
+    }
+
+    .estado-libro{
+        margin:auto;
+        margin-bottom:2rem;
+        text-align:center;
+    }
+
+    .sinopsis{
+        margin:0;
+    }
+
+    .notas{
+        margin:0;
+        margin-top:2rem;
+    }
+
+    .notas input{
+        width:100%;
+    }
+}
+
+@font-face{
+    font-family:Noteworthy;
+    src:url('../../Tipografias/Noteworthy-Lt.ttf')
+    format('truetype');
+    font-weight:normal;
+    font-style:normal;
+    font-display:swap;
+}
