@@ -1,64 +1,81 @@
 .ficha-libro{
     background-color:var(--cl-blanco);
-    padding:1rem;
+    padding:2rem;
     margin-bottom:25px;
     border-radius:8px;
-    box-shadow:0 4px 8px rgb(0 0 0 /50%);
+    box-shadow:0 4px 8px rgb(0 0 0 / 50%);
 }
 
-/* IMAGEN */
-.tj-libro img{
-    width:100%;
-    max-width:280px;
-    height:350px;
-    object-fit:cover;
-    margin-left:8px;
+/* CABECERA */
+
+.cabecera-libro{
+    display:flex;
+    gap:3rem;
+    align-items:flex-start;
+}
+
+/* PORTADA */
+
+.portada-libro{
+    flex-shrink:0;
+}
+
+.portada-libro img{
+    width:260px;
+    height:auto;
     border-radius:4px;
+    display:block;
 }
 
-/* TITULO */
-.info-libro h3{
+/* DATOS */
+
+.datos-libro{
+    flex:1;
+}
+
+.datos-libro h2{
     font-family:'Bebas Neue',sans-serif;
-    font-size:2.8rem;
-    margin-bottom:1rem;
-    text-transform:uppercase;
+    font-size:3rem;
+    margin-bottom:2rem;
 }
 
-/* TABLA INFO */
 .info{
-    margin-top:1.6rem;
     border-collapse:separate;
-    border-spacing:0 .6rem;
+    border-spacing:0 1rem;
 }
 
 .info th{
     text-align:left;
-    padding-right:1.5rem;
+    padding-right:2rem;
     white-space:nowrap;
+    font-size:1.1rem;
 }
 
 .info td{
     font-family:'Noteworthy',sans-serif;
+    font-size:1.1rem;
 }
 
-/* PARTE ABAJO */
+/* PARTE INFERIOR */
+
 .parte-inferior{
     display:flex;
+    gap:3rem;
     align-items:flex-start;
     margin-top:2rem;
 }
 
-/* SELECT */
+/* ESTADO */
+
 .estado-libro{
-    margin-top:10px;
-    margin-right:4rem;
-    min-width:250px;
+    width:260px;
+    flex-shrink:0;
 }
 
 .estado-libro select{
-    border:none;
     width:100%;
-    padding:.8rem;
+    border:none;
+    padding:.9rem;
     background-color:var(--cl-bt);
     color:var(--cl-blanco);
     border-radius:55px;
@@ -66,37 +83,83 @@
     text-align:center;
 }
 
-/* SINOPSIS */
-.sinopsis{
-    font-family:'Noteworthy',sans-serif;
-    margin-right:6rem;
-    text-align:justify;
-    line-height:1.8;
+/* CONTENIDO DERECHA */
+
+.contenido-derecha{
     flex:1;
 }
 
+/* SINOPSIS */
+
+.sinopsis{
+    margin:0;
+}
+
+.sinopsis h4{
+    margin-bottom:1rem;
+    margin-left:100px;
+    font-family:'Bebas Neue',sans-serif;
+    font-size:1.8rem;
+}
+
+.sinopsis p{
+    font-family:'Noteworthy',sans-serif;
+    text-align:justify;
+    line-height:1.8;
+}
+
 /* NOTAS */
+
 .notas{
-    margin-top:2rem;
-    margin-left:310px;
+    margin-top:1.5rem;
 }
 
 .notas input{
-    width:260px;
-    padding:.5rem;
+    width:100%;
+    max-width:500px;
+    padding:.6rem;
     border:1px solid #bbb;
+    border-radius:4px;
 }
 
 /* ESTRELLAS */
+
 .star{
     color:#bbb;
-    transition:.3s;
     cursor:pointer;
+    transition:.3s;
 }
 
 .star:hover,
 .star.checked{
     color:rgb(231,201,31);
+}
+
+/* RESPONSIVE */
+
+@media screen and (width<=992px){
+
+    .cabecera-libro{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .datos-libro{
+        width:100%;
+        text-align:center;
+    }
+
+    .info{
+        margin:auto;
+    }
+
+    .estado-libro{
+        margin:auto;
+    }
+
+    .notas input{
+        width:100%;
+    }
 }
 
 /* RESPONSIVE */

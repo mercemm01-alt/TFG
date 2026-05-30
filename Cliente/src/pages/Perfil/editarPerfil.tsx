@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { apiFetch } from "../../services/api";
-//import "./editarPerfil.css";
 
 function EditarPerfil() {
 
@@ -15,18 +14,18 @@ function EditarPerfil() {
 
     const [imagen, setImagen] = useState<File | null>(null);
     const [error, setError] = useState("");
-    const navigate = useNavigate();
-    const idUser = Number(localStorage.getItem("idUser"));
-    console.log("ID USER:", idUser);
-console.log("LOCAL:", localStorage.getItem("idUser"));
     const [preview, setPreview] = useState("");
 
     const [generosDisponibles, setGenerosDisponibles] = useState<string[]>([]);
+
+    const navigate = useNavigate();
+    const idUser = Number(localStorage.getItem("idUser"));
 
     useEffect(() => {
         const cargarUsuario = async () => {
             try {
                 const data = await apiFetch(`/verPerfil/${idUser}`);
+
                 setFormData({
                     user: data.user,
                     contrasena: "",
@@ -34,28 +33,46 @@ console.log("LOCAL:", localStorage.getItem("idUser"));
                     descripcion: data.descripcion,
                     generos: data.generos || []
                 });
-                setPreview(`http://localhost:8080/img/${data.imagen}`);
+
+                if (data.imagen) {
+                    setPreview(`http://localhost:8080/img/${data.imagen}`);
+                }
+
             } catch {
                 setError("Error al cargar perfil");
             }
         };
 
-        if (idUser) cargarUsuario();
+        if (idUser) {
+            cargarUsuario();
+        }
     }, [idUser]);
 
     useEffect(() => {
         const cargarGeneros = async () => {
             try {
+
                 const data = await apiFetch("/libros/generos");
-                setGenerosDisponibles(data);
-            } catch {
+
+                console.log("Generos:", data);
+
+                setGenerosDisponibles(
+                    Array.isArray(data) ? data : []
+                );
+
+            } catch (err) {
+                console.error(err);
                 setError("Error al cargar géneros");
             }
         };
+
         cargarGeneros();
     }, []);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=> {
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+
         const { name, value } = e.target;
 
         setFormData(prev => ({
@@ -64,8 +81,8 @@ console.log("LOCAL:", localStorage.getItem("idUser"));
         }));
     };
 
-    // Toggle géneros tipo chip
     const toggleGenero = (genero: string) => {
+
         setFormData(prev => ({
             ...prev,
 
@@ -75,18 +92,20 @@ console.log("LOCAL:", localStorage.getItem("idUser"));
         }));
     };
 
-    const envio = async (e: any) => {
+    const envio = async (e: React.FormEvent) => {
+
         e.preventDefault();
+
         setError("");
 
-        // VALIDACIÓN CONTRASEÑA
         if (formData.contrasena !== formData.confirmarContrasena) {
             setError("Las contraseñas no coinciden");
             return;
         }
 
         try {
-            const dataEnviar = {
+
+            const usuarioActualizar = {
                 user: formData.user,
                 contrasena: formData.contrasena,
                 descripcion: formData.descripcion,
@@ -94,16 +113,23 @@ console.log("LOCAL:", localStorage.getItem("idUser"));
             };
 
             const form = new FormData();
-            form.append("userJson", JSON.stringify(dataEnviar));
+
+            form.append(
+                "userJson",
+                JSON.stringify(usuarioActualizar)
+            );
 
             if (imagen) {
                 form.append("imagen", imagen);
             }
 
-            await fetch(`http://localhost:8080/api/editarPerfil/${idUser}`, {
-                method: "PUT",
-                body: form
-            });
+            await fetch(
+                `http://localhost:8080/api/editarPerfil/${idUser}`,
+                {
+                    method: "PUT",
+                    body: form
+                }
+            );
 
             navigate("/");
 
@@ -116,11 +142,12 @@ console.log("LOCAL:", localStorage.getItem("idUser"));
         <form onSubmit={envio}>
 
             <h2>Editar perfil</h2>
+
             {error && <p>{error}</p>}
 
-            {/* USER */}
             <div>
                 <label>Nombre de usuario</label>
+
                 <input
                     name="user"
                     value={formData.user}
@@ -128,9 +155,9 @@ console.log("LOCAL:", localStorage.getItem("idUser"));
                 />
             </div>
 
-            {/* PASSWORD */}
             <div>
                 <label>Nueva contraseña</label>
+
                 <input
                     type="password"
                     name="contrasena"
@@ -141,6 +168,7 @@ console.log("LOCAL:", localStorage.getItem("idUser"));
 
             <div>
                 <label>Confirmar contraseña</label>
+
                 <input
                     type="password"
                     name="confirmarContrasena"
@@ -149,21 +177,29 @@ console.log("LOCAL:", localStorage.getItem("idUser"));
                 />
             </div>
 
-            {/* IMAGEN */}
             <div>
                 <label>Imagen</label>
+
                 <input
                     type="file"
                     accept="image/*"
                     onChange={(e) => {
 
-                        if (e.target.files && e.target.files[0]) {
+                        if (
+                            e.target.files &&
+                            e.target.files[0]
+                        ) {
+
                             const file = e.target.files[0];
+
                             setImagen(file);
-                            setPreview(URL.createObjectURL(file));
+                            setPreview(
+                                URL.createObjectURL(file)
+                            );
                         }
                     }}
                 />
+
                 {preview && (
                     <img
                         src={preview}
@@ -173,9 +209,9 @@ console.log("LOCAL:", localStorage.getItem("idUser"));
                 )}
             </div>
 
-            {/* DESCRIPCIÓN */}
             <div>
                 <label>Descripción</label>
+
                 <textarea
                     name="descripcion"
                     value={formData.descripcion}
@@ -183,28 +219,34 @@ console.log("LOCAL:", localStorage.getItem("idUser"));
                 />
             </div>
 
-            {/* GENEROS */}
             <div>
                 <label>Géneros</label>
 
                 <div>
                     {generosDisponibles.map(g => (
+
                         <button
-                            type="button"
                             key={g}
+                            type="button"
                             onClick={() => toggleGenero(g)}
                             style={{
                                 margin: "5px",
-                                background: formData.generos.includes(g) ? "gray" : "lightgray"
+                                backgroundColor:
+                                    formData.generos.includes(g)
+                                        ? "#6c757d"
+                                        : "#e9ecef"
                             }}
                         >
                             {g}
                         </button>
+
                     ))}
                 </div>
             </div>
 
-            <button type="submit">Guardar cambios</button>
+            <button type="submit">
+                Guardar cambios
+            </button>
 
         </form>
     );
