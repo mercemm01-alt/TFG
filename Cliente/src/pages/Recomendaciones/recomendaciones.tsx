@@ -27,7 +27,7 @@ function Recomendaciones() {
             {error && <p>{error}</p>}
 
             <div className="row g-4"> {libros.map((libro:any,index)=>(
-                <TarjetaLibroReco key={ libro.apiLibrosId || index } libro={libro}/>
+                <TarjetaLibroReco key={ libro.idLibro || index } libro={libro}/>
             ))}
             </div>
         </main>

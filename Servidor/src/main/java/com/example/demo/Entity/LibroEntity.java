@@ -1,7 +1,9 @@
 package com.example.demo.Entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -47,17 +49,12 @@ public class LibroEntity implements Serializable {
 	@Column(name="IMAGEN")
 	private String imagen;
 
-
 	@Column(name="FECHA_PUBLICACION")
 	private String fechaPublicacion;
-
-
+	
 	@Column(name="VALORACION")
 	private Double valoracion;
 
-
-	@Column(name="TIPO")
-	private String tipo;
 	
 	// Libro - User N:M (USER_LIBRO)
 	@OneToMany(mappedBy="libroUser")
@@ -69,6 +66,9 @@ public class LibroEntity implements Serializable {
 	
 	@OneToMany(mappedBy = "libroGenero")
 	private Set<LibroGeneroEntity> generosLibro = new HashSet<>();
+	
+	@OneToMany(mappedBy = "libro")
+	private List<LibroSagaEntity> sagas = new ArrayList<>();
 
 	public Long getIdLibro() {
 		return idLibro;
@@ -158,14 +158,6 @@ public class LibroEntity implements Serializable {
 		this.valoracion = valoracion;
 	}
 
-	public String getTipo() {
-		return tipo;
-	}
-
-	public void setTipo(String tipo) {
-		this.tipo = tipo;
-	}
-
 	public Set<UserLibroEntity> getUserLibro() {
 		return userLibro;
 	}
@@ -193,18 +185,23 @@ public class LibroEntity implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	
+
+	public List<LibroSagaEntity> getSagas() {
+		return sagas;
+	}
+
+	public void setSagas(List<LibroSagaEntity> sagas) {
+		this.sagas = sagas;
+	}
 
 	@Override
 	public String toString() {
 		return "LibroEntity [idLibro=" + idLibro + ", apiId=" + apiId + ", isbn=" + isbn + ", titulo=" + titulo
 				+ ", autor=" + autor + ", editorial=" + editorial + ", numPaginas=" + numPaginas + ", sinopsis="
 				+ sinopsis + ", imagen=" + imagen + ", fechaPublicacion=" + fechaPublicacion + ", valoracion="
-				+ valoracion + ", tipo=" + tipo + ", userLibro=" + userLibro + ", opinionesLibro=" + opinionesLibro
-				+ ", generosLibro=" + generosLibro + "]";
+				+ valoracion + ", userLibro=" + userLibro + ", opinionesLibro=" + opinionesLibro + ", generosLibro="
+				+ generosLibro + ", sagas=" + sagas + "]";
 	}
-
-	
-	
-	
-	
 }
