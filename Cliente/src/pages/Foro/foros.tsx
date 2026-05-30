@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import ForoCard from "../../componentes/tarjetaForo";
 import { apiFetch } from "../../services/api";
 import { useNavigate } from "react-router-dom";
-
+import "./foro.css";
 function Foros() {
 
     const navigate = useNavigate();

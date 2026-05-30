@@ -54,7 +54,7 @@ function Header() {
 
                         {/* Links */}
                         <Link to="/" className="link-nav">Inicio</Link>
-                        <Link to="/misLibros" className="link-nav">Mis Libros</Link>
+                        <Link to="/mis-libros" className="link-nav">Mis Libros</Link>
                         <Link to="/recomendaciones" className="link-nav">Recomendaciones</Link>
                         <Link to="/foro" className="link-nav">Foro</Link>
 

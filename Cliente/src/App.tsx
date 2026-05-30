@@ -9,6 +9,7 @@ import InfoLibro from './pages/InfoLibros/infoLibros';
 import Foros from "./pages/Foro/foros";
 import ForoChat from "./pages/Foro/foroChat";
 import CrearForo from "./pages/Foro/crearForo";
+import MisLibros from './pages/MisLibros/misLibros';
 import Header from './componentes/Header/header';
 import Footer from './componentes/Footer/footer';
 
@@ -33,6 +34,7 @@ function AppContent() {
           <Route path="/foro" element={<Foros/>}/>
           <Route path="/foro/:idForo" element={<ForoChat/>}/>
           <Route path="/crear-foro" element={<CrearForo/>}/>
+          <Route path="/mis-libros" element={<MisLibros/>}/>
         </Routes>
       </main>
 

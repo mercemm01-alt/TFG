@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Entity.LibroEntity;
+import com.example.demo.Mapper.UserMapper;
 import com.example.demo.Model.LibroDTO;
 import com.example.demo.Repository.RecomendacionesRepository;
 import com.example.demo.Services.RecomendacionesService;
@@ -18,6 +19,9 @@ public class RecomendacionesImplement implements RecomendacionesService{
 
 	 @Autowired
 	 private RecomendacionesRepository recomendacionesRepository;
+	 
+	 @Autowired
+	 private UserMapper mapper;
 	 
 	@Override
 	public List<LibroDTO> obtenerRecomendaciones(Long idUser) {
@@ -33,18 +37,7 @@ public class RecomendacionesImplement implements RecomendacionesService{
 
 	        for (LibroEntity libro : recomendaciones) {
 
-	            LibroDTO dto = new LibroDTO();
-	            dto.setIdLibro(libro.getIdLibro());
-	            dto.setTitulo(libro.getTitulo());
-	            dto.setAutor(libro.getAutor());
-	            dto.setEditorial(libro.getEditorial());
-	            dto.setNumPaginas(libro.getNumPaginas());
-	            dto.setSinopsis(libro.getSinopsis());
-	            dto.setImagen(libro.getImagen());
-	            dto.setFechaPublicacion(libro.getFechaPublicacion());
-	            dto.setValoracion(libro.getValoracion());
-
-	            resultado.add(dto);
+	            resultado.add(mapper.libroToDTO(libro));
 	        }
 
 	        return resultado;

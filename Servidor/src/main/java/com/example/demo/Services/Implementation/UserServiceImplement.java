@@ -93,7 +93,7 @@ public class UserServiceImplement implements UserService {
 	    UserEntity user = usuarioRepository.findByIdUser(id)
 	            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
 
-	    return userMapper.toDTO(user);
+	    return userMapper.userToDTO(user);
 	}
 
 	@Override
@@ -177,7 +177,7 @@ public class UserServiceImplement implements UserService {
 		}
 		
 		usuarioRepository.save(userUpdate);
-		return userMapper.toDTO(userUpdate);
+		return userMapper.userToDTO(userUpdate);
 	}
 
 	

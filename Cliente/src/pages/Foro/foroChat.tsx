@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { apiFetch } from "../../services/api";
 import MensajeCard from "../../componentes/tarjetaMensaje";
-
+import "./foroChat.css";
 function ForoChat() {
     const { idForo } = useParams();
     const [mensajes, setMensajes] =useState<any[]>([]);

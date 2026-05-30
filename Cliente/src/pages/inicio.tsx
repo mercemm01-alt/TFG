@@ -47,7 +47,7 @@ function Inicio() {
             {/* INFO */}
             <div className="col-6 col-md-8 col-lg-3 col-xl-4 info-perfil">
             <div className="btns-perfil">
-                <a className="bt-perfil" href="/misLibros">Mis Libros</a>
+                <a className="bt-perfil" href="/mis-libros">Mis Libros</a>
                 <a className="bt-perfil" href="/foro">Foros</a>
             </div>
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { apiFetch } from "../../services/api";
-
+import "./crearForo.css";
 function CrearForo() {
 
     const navigate = useNavigate();

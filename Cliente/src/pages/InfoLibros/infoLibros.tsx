@@ -9,6 +9,7 @@ function InfoLibro() {
 
     const [libro, setLibro] = useState<any>(null);
     const [error, setError] = useState("");
+    const [estado, setEstado] = useState("");
 
     useEffect(() => {
 
@@ -18,9 +19,15 @@ function InfoLibro() {
 
                 const data = await apiFetch(`/libros/${id}`);
 
-                console.log("DATA:", data);
-
                 setLibro(data);
+
+                const idUser = Number(
+                    localStorage.getItem("idUser")
+                );
+
+                const respuesta = await apiFetch(`/mis-libros/${id}/estado?idUser=${idUser}`);
+
+                setEstado(respuesta.estado || "");
 
             } catch (err) {
 
@@ -35,6 +42,36 @@ function InfoLibro() {
         }
 
     }, [id]);
+
+    const cambiarEstado = async (
+        e: React.ChangeEvent<HTMLSelectElement>
+    ) => {
+
+        const nuevoEstado = e.target.value;
+
+        setEstado(nuevoEstado);
+
+        const idUser = Number(
+            localStorage.getItem("idUser")
+        );
+
+        try {
+
+            await apiFetch(
+                `/mis-libros/${id}/estado?idUser=${idUser}&estado=${nuevoEstado}`,
+                {
+                    method: "POST"
+                }
+            );
+
+            console.log("Estado guardado");
+
+        } catch (error) {
+
+            console.error(error);
+
+        }
+    };
 
     if (error) {
         return <p>{error}</p>;
@@ -52,10 +89,12 @@ function InfoLibro() {
                 <div className="cabecera-libro">
 
                     <div className="portada-libro">
+
                         <img
                             src={libro.imagen}
                             alt={libro.titulo}
                         />
+
                     </div>
 
                     <div className="datos-libro">
@@ -63,6 +102,7 @@ function InfoLibro() {
                         <h2>{libro.titulo}</h2>
 
                         <table className="info">
+
                             <tbody>
 
                                 <tr>
@@ -107,6 +147,7 @@ function InfoLibro() {
                                 </tr>
 
                             </tbody>
+
                         </table>
 
                     </div>
@@ -117,11 +158,27 @@ function InfoLibro() {
 
                     <div className="estado-libro">
 
-                        <select>
-                            <option>Estado</option>
-                            <option>Pendiente</option>
-                            <option>Leyendo</option>
-                            <option>Leído</option>
+                        <select
+                            value={estado}
+                            onChange={cambiarEstado}
+                        >
+
+                            <option value="">
+                                Estado
+                            </option>
+
+                            <option value="PENDIENTE">
+                                Pendiente
+                            </option>
+
+                            <option value="LEYENDO">
+                                Leyendo
+                            </option>
+
+                            <option value="LEIDO">
+                                Leído
+                            </option>
+
                         </select>
 
                     </div>
@@ -133,7 +190,10 @@ function InfoLibro() {
                             <h4>Sinopsis</h4>
 
                             <p>
-                                {libro.sinopsis || "Sin sinopsis disponible"}
+                                {
+                                    libro.sinopsis ||
+                                    "Sin sinopsis disponible"
+                                }
                             </p>
 
                         </div>
