@@ -48,8 +48,6 @@ function Registro() {
                 correo,
                 fechaNacimiento
             });
-            
-            console.log("REGISTRO:", data);
 
             //Guarda
             localStorage.setItem("idUser", data.idUser);

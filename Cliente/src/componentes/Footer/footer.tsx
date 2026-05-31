@@ -11,11 +11,11 @@ function Footer() {
                 <div className="footer-legal">
                     <h3>Legal</h3>
                     <ul>
-                        <li><Link to="/avisos#aviso-legal">Aviso Legal</Link></li>
-                        <li><Link to="/avisos#politica-privacidad">Política de Privacidad</Link></li>
-                        <li><Link to="/avisos#politica-cookies">Política de Cookies</Link></li>
-                        <li><Link to="/avisos#accesibilidad">Declaración de Accesibilidad</Link></li>
-                        <li><Link to="/avisos#terminos">Términos y Condiciones</Link></li>
+                        <li><Link to="/avisos-legales#aviso-legal">Aviso Legal</Link></li>
+                        <li><Link to="/avisos-legales#politica-privacidad">Política de Privacidad</Link></li>
+                        <li><Link to="/avisos-legales#politica-cookies">Política de Cookies</Link></li>
+                        <li><Link to="/avisos-legales#accesibilidad">Declaración de Accesibilidad</Link></li>
+                        <li><Link to="/avisos-legales#terminos">Términos y Condiciones</Link></li>
                     </ul>
                 </div>
 

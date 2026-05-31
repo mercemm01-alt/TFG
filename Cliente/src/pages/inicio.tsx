@@ -11,8 +11,6 @@ function Inicio() {
     const [error, setError] = useState("");
 
     const idUser = Number(localStorage.getItem("idUser"));
-    console.log("ID USER:", idUser);
-    console.log("LOCAL STORAGE:", localStorage.getItem("idUser"));
 
     useEffect(() => {
         const cargarDatos = async () => {

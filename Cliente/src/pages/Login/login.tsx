@@ -31,8 +31,6 @@ function Login() {
                 contrasena
             });
 
-            console.log("LOGIN:", data);
-
             //Guardar datos
             localStorage.setItem("idUser", data.idUser);
             localStorage.setItem("user", data.user);

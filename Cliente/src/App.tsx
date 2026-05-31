@@ -12,6 +12,7 @@ import CrearForo from "./pages/Foro/crearForo";
 import MisLibros from './pages/MisLibros/misLibros';
 import Header from './componentes/Header/header';
 import Footer from './componentes/Footer/footer';
+import AvisosLegales from "./pages/Legal/avisosLegales";
 
 function AppContent() {
   const location = useLocation();
@@ -35,6 +36,7 @@ function AppContent() {
           <Route path="/foro/:idForo" element={<ForoChat/>}/>
           <Route path="/crear-foro" element={<CrearForo/>}/>
           <Route path="/mis-libros" element={<MisLibros/>}/>
+          <Route path="/avisos-legales" element={<AvisosLegales />}/>
         </Routes>
       </main>
 

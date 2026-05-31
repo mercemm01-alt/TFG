@@ -1,0 +1,47 @@
+/* CONTENEDOR GENERAL */
+.legal-container{
+    max-width:1000px;
+    margin:3rem auto;
+    padding:0 2rem;
+}
+
+/* CADA APARTADO */
+.legal-container section{
+    background-color:var(--cl-blanco);
+    padding:2rem;
+    margin-bottom:2rem;
+    border-radius:8px;
+    box-shadow:0 4px 8px rgb(0 0 0 / 20%);
+}
+
+/* TÍTULOS */
+.legal-container h2{
+    font-family:var(--lt-titulos);
+    margin-bottom:1.2rem;
+    border-bottom:2px solid var(--cl-bt);
+    padding-bottom:0.5rem;
+}
+
+/* PÁRRAFOS */
+.legal-container p{
+    line-height:1.8;
+    margin-bottom:1rem;
+    text-align:justify;
+}
+
+/* RESPONSIVE */
+@media screen and (width <= 768px){
+
+    .legal-container{
+        padding:0 1rem;
+    }
+
+    .legal-container section{
+        padding:1.5rem;
+    }
+
+    .legal-container h2{
+        font-size:1.5rem;
+    }
+
+}

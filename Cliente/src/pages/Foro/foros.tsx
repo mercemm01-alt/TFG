@@ -16,7 +16,6 @@ function Foros() {
             const data = await apiFetch( "/foro?idUser=1");
             setForos(data);
         } catch(error) {
-            console.log(error);
         }
     }
 
@@ -27,7 +26,6 @@ function Foros() {
             const data = await apiFetch(`/foro/buscar?nombre=${texto}&idUser=1`);
             setForos(data);
         } catch(error) {
-            console.log(error);
         }
     }
 

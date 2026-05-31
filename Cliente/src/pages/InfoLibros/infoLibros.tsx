@@ -64,8 +64,6 @@ function InfoLibro() {
                 }
             );
 
-            console.log("Estado guardado");
-
         } catch (error) {
 
             console.error(error);

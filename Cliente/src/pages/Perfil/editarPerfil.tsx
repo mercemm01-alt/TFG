@@ -54,8 +54,6 @@ function EditarPerfil() {
 
                 const data = await apiFetch("/libros/generos");
 
-                console.log("Generos:", data);
-
                 setGenerosDisponibles(
                     Array.isArray(data) ? data : []
                 );

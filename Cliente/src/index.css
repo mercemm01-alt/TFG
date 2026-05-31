@@ -33,3 +33,11 @@ button {
     background: none;
     cursor: pointer;
 }
+
+@font-face{
+    font-family: Noteworthy;
+    src: url('../Tipografias/Noteworthy-Lt.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
