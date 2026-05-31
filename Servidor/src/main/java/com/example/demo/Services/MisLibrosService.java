@@ -11,4 +11,8 @@ public interface MisLibrosService {
 	String obtenerEstado(Long idUser, Long idLibro);
 	
 	List<LibroDTO>obtenerMisLibros(Long idUser);
+	
+	LibroDTO obtenerLecturaActual(Long idUser);
+	
+	List<LibroDTO> obtenerUltimasLecturas(Long idUser);
 }

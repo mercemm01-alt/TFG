@@ -23,4 +23,6 @@ public interface LibroRepository extends JpaRepository<LibroEntity,Long>{
 				""")
 		
 			List<LibroSagaEntity> obtenerSagasLibro(Long idLibro);
+		
+		List<LibroEntity> findTop5ByTituloContainingIgnoreCase(String titulo);
 }

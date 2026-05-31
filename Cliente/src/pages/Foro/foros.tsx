@@ -32,22 +32,38 @@ function Foros() {
     }
 
     return (
-        <div>
-            <h1>Foros</h1>
-
-            <input type="text" placeholder="Buscar foro" value={busqueda}
-                onChange={(e) => buscarForos(e.target.value)}
-            />
-
-            <button onClick={() => navigate("/crear-foro")}> Crear foro </button>
-
-            <div>
-                {foros.map((foro) => (
-                    <ForoCard key={foro.idForos} foro={foro}/>
-                ))}
+        <main className="container my-5">
+            <div className="cabecera-foros">
+                <h1>Foros</h1>
+                <div className="acciones-foros">
+                    <input
+                        type="text"
+                        placeholder="Buscar foro"
+                        value={busqueda}
+                        onChange={(e) => buscarForos(e.target.value)}
+                        className="buscador-foros"
+                    />
+                    <button
+                        className="btn-crear-foro"
+                        onClick={() => navigate("/crear-foro")}
+                    >
+                        Crear foro
+                    </button>
+                </div>
             </div>
-        </div>
-    )
+
+            <div className="lista-foros">
+                {
+                    foros.map((foro) => (
+                        <ForoCard
+                            key={foro.idForos}
+                            foro={foro}
+                        />
+                    ))
+                }
+            </div>
+        </main>
+    );
 }
 
 export default Foros;

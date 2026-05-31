@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Entity.Estado;
+import com.example.demo.Entity.LibroEntity;
 import com.example.demo.Entity.UserLibroEntity;
 import com.example.demo.Mapper.UserMapper;
 import com.example.demo.Model.LibroDTO;
@@ -84,5 +85,39 @@ public class MisLibrosImplement implements MisLibrosService{
 
 	    return "";
 	}
+
+	@Override
+	public LibroDTO obtenerLecturaActual(Long idUser) {
+		List<UserLibroEntity> leyendo = userLibroRepository.buscarPorEstadoOrdenados(idUser, Estado.LEYENDO);
+
+	    if (leyendo.isEmpty()) {
+	        return null;
+	    }
+
+	    LibroEntity libro =
+	            leyendo.get(0).getLibroUser();
+
+	    return mapper.libroToDTO(libro);
+	}
+
+	@Override
+	public List<LibroDTO> obtenerUltimasLecturas(Long idUser) {
+		
+		List<UserLibroEntity> leidos = userLibroRepository.buscarUltimosPorEstado(idUser, Estado.LEIDO);
+	    List<LibroDTO> resultado = new ArrayList<>();
+
+	    int limite = Math.min(leidos.size(), 3);
+
+	    for (int i = 0; i < limite; i++) {
+	        LibroEntity libro = leidos.get(i).getLibroUser();
+
+	        resultado.add(mapper.libroToDTO(libro)
+	        );
+	    }
+
+	    return resultado;
+	}
+	
+	
 
 }

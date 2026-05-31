@@ -1,13 +1,37 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { apiFetch } from "../../services/api";
 import "./header.css";
 
 function Header() {
 
     const [menuAbierto, setMenuAbierto] = useState(false);
+    const [busqueda, setBusqueda] = useState(""); 
+    const [sugerencias, setSugerencias] = useState<any[]>([]);
+    const navigate = useNavigate();
 
     const abrirMenu = () => setMenuAbierto(true);
     const cerrarMenu = () => setMenuAbierto(false);
+
+    const buscarLibros = async (texto: string) => { 
+        setBusqueda(texto); 
+        
+        if (texto.length < 2) { 
+            setSugerencias([]); return; 
+        } 
+        try { 
+            const data = await apiFetch( `/libros/sugerencias?titulo=${texto}` ); 
+            setSugerencias(data); 
+
+        } catch (error) { 
+            console.error(error); 
+        } }; 
+        
+        const seleccionarLibro = (idLibro: number) => { 
+            setBusqueda(""); 
+            setSugerencias([]); 
+            navigate(`/libro/${idLibro}`); 
+        };
 
     return (
         <header>
@@ -59,13 +83,37 @@ function Header() {
                         <Link to="/foro" className="link-nav">Foro</Link>
 
                         {/* Buscador */}
-                        <form className="buscador">
-                            <input className="bus" type="search" placeholder="Nombre del libro" />
-                            <button type="submit" className="lupa">
-                                <img src="/Recursos/svg/lupa.svg" alt="lupa" />
-                            </button>
-                        </form>
+                        <div className="contenedor-buscador">
+                            <form className="buscador" onSubmit={(e) => e.preventDefault()} > 
+                                <input 
+                                    className="bus" 
+                                    type="search" 
+                                    placeholder="Nombre del libro" 
+                                    value={busqueda} onChange={(e) => 
+                                    buscarLibros(e.target.value) } 
+                                /> 
 
+                                <button type="submit" className="lupa" > 
+                                <img src="/Recursos/svg/lupa.svg" alt="lupa" /> 
+                                
+                                </button> 
+                            </form> 
+
+                            { 
+                                sugerencias.length > 0 && ( 
+                                    <div className="dropdown-libros"> 
+                                        { sugerencias.map((libro) => ( 
+                                            <div key={libro.idLibro} 
+                                                className="resultado-libro" 
+                                                onClick={() => seleccionarLibro( libro.idLibro) } 
+                                            > 
+                                                <img src={libro.imagen} alt={libro.titulo} /> 
+                                                <span> {libro.titulo} </span> 
+                                        </div> )) } 
+                                    </div> 
+                                )
+                            } 
+                        </div>
                     </div>
                 </div>
             </nav>

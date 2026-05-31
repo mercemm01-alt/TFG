@@ -1,0 +1,345 @@
+.tj-libro {
+    display: flex;
+    flex-direction: column;
+    background-color:var(--cl-blanco);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgb(0 0 0 /50%);
+    align-items: center;
+    text-align: center;
+}
+
+.tj-libro a img{
+    height: 300px;
+    border-radius: 4px;
+}
+
+.tj-libro h3{
+    padding: 0.5rem;
+    font-family: var(--lt-titulos);
+    font-size: 1.5rem;
+    max-width: 210px;
+}
+
+.main-superior{
+    margin-bottom: 2rem;
+}
+
+.img-perfil img{
+    border-radius: 6px;
+    width: 230px;
+}
+
+.user{
+    font-family:var(--lt-titulos);
+    font-size: 2rem;
+    margin-left: 75px;
+}
+
+.btns-perfil{
+    display:flex;
+    gap:1rem;
+    margin-top:28px;
+}
+
+.bt-perfil{
+    flex:1;
+    text-align:center;
+    background-color:var(--cl-bt);
+    color:var(--cl-blanco);
+    text-decoration:none;
+    border-radius:8px;
+    padding:0.8rem 1rem;
+}
+
+.descripcion{
+    font-family: 'Noteworthy', sans-serif ;
+    background-color: #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+/* LECTURA ACTUAL */
+.lectura-actual{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin-left:auto;
+}
+
+.lectura-actual h3{
+    margin-bottom:1rem;
+}
+
+.lectura-actual .link-ultima-lectura{
+    text-decoration:none;
+    color:inherit;
+}
+
+.card-lectura-actual{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    background-color:var(--cl-blanco);
+    padding:1.5rem;
+    border-radius:8px;
+    box-shadow:0 4px 8px rgb(0 0 0 / 50%);
+    width:280px;
+    transition:transform .2s ease;
+    color:black;
+    
+}
+
+.card-lectura-actual:hover{
+    transform:translateY(-4px);
+}
+
+.card-lectura-actual img{
+    height:320px;
+    width:auto;
+    border-radius:4px;
+}
+
+.card-lectura-actual h4{
+    margin-top:1rem;
+    margin-bottom:.4rem;
+    font-family:var(--lt-titulos);
+    font-size:1.8rem;
+}
+
+.card-lectura-actual p{
+    margin:0;
+}
+
+.titulo{
+    font-size:1.4rem;
+    margin:0;
+    font-family:'Bebas Neue',sans-serif;
+}
+
+.valoracion{
+    font-size:1.1rem;
+    font-weight:500;
+}
+
+.lectura-actual img{
+    border-radius: 4px;
+    height: 320px;
+}
+
+.reco-lista{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.recomen h2{
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.libro-reco{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.star{
+    color: #bbb;
+    transition: color 0.3s;
+    cursor: pointer;
+}
+
+.star:hover,
+.star.checked{
+    color: rgb(231, 201, 31);
+}
+
+.estrellas{
+    margin-right: 45px;
+}
+
+.ultimas-lecturas-lista{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:2rem;
+}
+
+.link-ultima-lectura{
+    text-decoration:none;
+    color:inherit;
+}
+
+.card-ultima-lectura{
+    display:flex;
+    flex-direction:column;
+    background-color:var(--cl-blanco);
+    padding:2rem;
+    border-radius:8px;
+    box-shadow:0 4px 8px rgb(0 0 0 / 50%);
+    align-items:center;
+    text-align:center;
+    width:280px;
+    transition:transform .2s ease;
+}
+
+.card-ultima-lectura:hover{
+    transform:translateY(-4px);
+}
+
+.card-ultima-lectura img{
+    height:300px;
+    width:auto;
+    border-radius:4px;
+}
+
+.card-ultima-lectura h4{
+    padding:.5rem;
+    font-family:var(--lt-titulos);
+    font-size:1.5rem;
+    max-width:210px;
+    margin-bottom:.2rem;
+}
+
+.card-ultima-lectura p{
+    margin:0;
+}
+
+.sin-lecturas{
+    text-align:center;
+    font-size:1.2rem;
+    margin-top:1rem;
+}
+
+/* Minimiza tamaño  links */
+@media screen and (width <= 1200px) {
+    .links{
+        margin-left: 1rem;
+        gap: 1.6rem;
+    }
+}
+
+@media screen and (width<= 500px){
+    .perfil,
+    .info-perfil {
+        width: 100%;
+    }
+
+    .img-perfil {
+        order: 1;
+        text-align: center;
+    }
+
+    .img-perfil img {
+        width: 120px;
+        height: 120px;
+        border-radius: 20%;
+    }
+
+    .btns-perfil {
+        order: 2;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin: 15px 0;
+    }
+
+    .descripcion {
+        order: 3;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .user{
+        margin: 0;
+        text-align: center;
+    }
+
+    .tj-libro{
+        margin-bottom: 24px;
+    }
+}
+
+/* Da forma a el menu hamburguesa */
+@media screen and (width<= 992px){
+    .lectura-actual img{
+        margin-right: 230px;
+    }
+
+    .lectura-actual h3{
+        margin-right: 260px;
+    }
+
+    .lectura-actual p{
+        margin-right: 250px;
+    }
+
+    .abrir-menu, .cerrar-menu{
+        display: block;
+        border: 0;
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+    .cerrar-menu{
+        order: 1;
+        align-self: flex-end;
+        display: flex;
+        border: none;
+        flex-direction: column;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        align-items: end;
+        background-color: var(--cl-sec);
+        
+    }
+
+    .buscador{
+        order: 2;
+        width: 100%;
+        max-width: 100%;
+        padding: 0.6rem 0.55rem;
+        font-size: 0.85rem;
+        align-items: end;
+    }
+
+    .links{
+        opacity: 0;
+        visibility: hidden;
+        display: flex;
+        position: fixed;
+        align-items: end;
+        flex-direction: column;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        padding: 2rem;
+        width: 280px;
+        gap: 1rem;
+        background-color: var(--cl-sec);
+        box-shadow: 0 0 0 100vmax rgb(0 0 0 /50%);
+        border-radius: 4px;
+    }
+
+    .links.visible{
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .link-nav{
+        order: 3;
+        color: var(--cl-blanco);
+    }
+}
+
+@font-face{
+    font-family: Noteworthy;
+    src: url('../Tipografias/Noteworthy-Lt.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}

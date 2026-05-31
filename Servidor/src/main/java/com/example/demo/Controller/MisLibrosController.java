@@ -41,4 +41,16 @@ public class MisLibrosController {
 
 	    return misLibrosService.obtenerMisLibros(idUser);
 	}
+	
+	@GetMapping("/lectura-actual/{idUser}")
+    public LibroDTO obtenerLecturaActual(@PathVariable Long idUser){
+
+        return misLibrosService.obtenerLecturaActual(idUser);
+    }
+	
+	@GetMapping("/ultimas-lecturas/{idUser}")
+	public List<LibroDTO> obtenerUltimasLecturas(@PathVariable Long idUser){
+
+	    return misLibrosService.obtenerUltimasLecturas(idUser);
+	}
 }

@@ -1,6 +1,7 @@
 package com.example.demo.Entity;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -27,6 +28,9 @@ public class UserLibroEntity implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(name="ESTADO")
 	private Estado estado;
+	
+	@Column(name = "FECHA_ESTADO")
+	private LocalDateTime fechaEstado;
 	
 	@ManyToOne
     @JoinColumn(name = "USER_ID", nullable = false)

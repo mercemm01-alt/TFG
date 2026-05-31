@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-
+import "./tarjetaForo.css";
 type Props = {
     foro: any;
 }
