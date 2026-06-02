@@ -108,6 +108,11 @@ function InfoLibro() {
                                 </tr>
 
                                 <tr>
+                                    <th>Saga:</th>
+                                    <td>{libro.saga || "Libro único"}</td>
+                                </tr>
+
+                                <tr>
                                     <th>Valoración:</th>
                                     <td>{libro.valoracion || "Sin datos"}</td>
                                 </tr>
@@ -195,12 +200,7 @@ function InfoLibro() {
                             </p>
                         </div>
 
-                        <div className="notas">
-                            <input
-                                type="text"
-                                placeholder="Notas:"
-                            />
-                        </div>
+                        
                     </div>
                 </div>
             </article>

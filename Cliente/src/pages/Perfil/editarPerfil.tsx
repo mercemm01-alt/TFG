@@ -15,7 +15,7 @@ function EditarPerfil() {
     const [imagen, setImagen] = useState<File | null>(null);
     const [error, setError] = useState("");
     const [preview, setPreview] = useState("");
-
+    const [mostrarConfirmacionEliminar, setMostrarConfirmacionEliminar] = useState(false);
     const [generosDisponibles, setGenerosDisponibles] = useState<string[]>([]);
 
     const navigate = useNavigate();
@@ -118,6 +118,21 @@ function EditarPerfil() {
 
         } catch (err: any) {
             setError(err.message || "Error al actualizar perfil");
+        }
+    };
+
+    const eliminarCuenta = async () => {
+        try {
+            const respuesta = await apiFetch(`/usuario/${idUser}`,
+                {
+                    method: "DELETE"
+                }
+            );
+            localStorage.clear();
+            navigate("/login", { replace: true });
+        } catch (error) {
+            console.error("ERROR:", error);
+            setError("Error al eliminar la cuenta");
         }
     };
 
@@ -226,8 +241,48 @@ function EditarPerfil() {
                 </div>
             </div>
 
-            {/* BOTON GUARDAR */}
-            <button type="submit" className="btn-guardar-perfil"> Guardar cambios</button>
+            <div className="acciones-perfil">
+                <button type="submit" className="btn-guardar-perfil"> Guardar cambios</button>
+                <button type="button" className="btn-eliminar-cuenta" onClick={() => setMostrarConfirmacionEliminar(true)}>Eliminar cuenta</button>
+            </div>
+            {
+                mostrarConfirmacionEliminar && (
+                    <div
+                        className="modal-overlay"
+                        onClick={() =>  setMostrarConfirmacionEliminar(false)}
+                    >
+
+                        <div
+                            className="modal-confirmacion"
+                            onClick={(e) =>e.stopPropagation()}
+                        >
+
+                            <h3> Eliminar cuenta </h3>
+                            <p> ¿Seguro que deseas eliminar tu cuenta? Esta acción no se puede deshacer. </p>
+
+                            <div className="acciones-modal">
+                                <button
+                                    type="button"
+                                    className="btn-cancelar"
+                                    onClick={() =>
+                                        setMostrarConfirmacionEliminar(false)
+                                    }
+                                >
+                                    Cancelar
+                                </button>
+
+                                <button
+                                    type="button"
+                                    className="btn-confirmar-eliminar"
+                                    onClick={async () => {await eliminarCuenta();
+                                        setMostrarConfirmacionEliminar(false);
+                                    }}
+                                > Eliminar </button>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
         </form>
     );
 }

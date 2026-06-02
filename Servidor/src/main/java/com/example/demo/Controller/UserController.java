@@ -1,8 +1,11 @@
 package com.example.demo.Controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,5 +62,13 @@ public class UserController {
         InterfaceUserDTO usuarioActualizado = usuarioService.actualizarPerfil(dtoActualizarPerfil, imagen);
 
         return ResponseEntity.ok(usuarioActualizado);
+    }
+    
+    @DeleteMapping("/usuario/{id}")
+    public ResponseEntity<Map<String, String>> eliminarUsuario(@PathVariable Long id) {
+
+        usuarioService.eliminarUsuario(id);
+
+        return ResponseEntity.ok(Map.of("mensaje", "Usuario eliminado"));
     }
 }

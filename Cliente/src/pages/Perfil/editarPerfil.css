@@ -96,28 +96,32 @@
     color: white;
 }
 
-/* BOTON GUARDAR */
-.btn-guardar-perfil{
-    align-self: center;
-
-    margin-top: 2rem;
-
-    background-color: var(--cl-bt);
-    color: white;
-
-    border: none;
-    border-radius: 8px;
-
-    padding: 1rem 2rem;
-
-    font-size: 1rem;
-    font-weight: 600;
-
-    cursor: pointer;
+.acciones-perfil{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:1rem;
+    margin-top:2rem;
 }
 
-.btn-guardar-perfil:hover{
-    background-color: var(--cl-sec);
+.btn-guardar-perfil{
+    min-width:220px;
+}
+
+.btn-eliminar-cuenta{
+    min-width:220px;
+    background-color:#dc3545;
+    color:white;
+    border:none;
+    border-radius:30px;
+    padding:14px 24px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.btn-eliminar-cuenta:hover{
+    background-color:#bb2d3b;
 }
 
 /* MENSAJES */
@@ -125,6 +129,19 @@
     text-align: center;
     color: #B16D6D;
     margin-bottom: 1rem;
+}
+.btn-eliminar-cuenta{
+    background:#dc3545;
+    color:white;
+    border:none;
+    border-radius:30px;
+    padding:12px 24px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+.btn-eliminar-cuenta:hover{
+    background:#bb2d3b;
 }
 
 /* RESPONSIVE */
@@ -143,4 +160,13 @@
     .btn-guardar-perfil{
         width: 100%;
     }
+
+    .acciones-perfil{
+    display:flex;
+    justify-content:center;
+    gap:1rem;
+    margin-top:2rem;
+}
+
+
 }

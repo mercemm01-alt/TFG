@@ -23,14 +23,18 @@ import com.example.demo.Repository.GeneroRepository;
 import com.example.demo.Repository.UserRepository;
 import com.example.demo.Services.UserService;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class UserServiceImplement implements UserService {
 	
 	@Autowired
-		private GeneroRepository generoRepository;
+	private GeneroRepository generoRepository;
 	
 	 @Autowired
-	    private UserRepository usuarioRepository;
+	 private UserRepository usuarioRepository;
+	 
+	 
 	 
 	 @Autowired
 	 private UserMapper userMapper;
@@ -130,16 +134,10 @@ public class UserServiceImplement implements UserService {
 		if (imagen != null && !imagen.isEmpty()) {
 
 	        String uploadDir = "uploads/img/";
-
 	        Files.createDirectories(Paths.get(uploadDir));
-
 	        String nombreImagen = imagen.getOriginalFilename();
-
 	        String rutaCompleta = uploadDir + nombreImagen;
-
-	        Files.write(
-	                Paths.get(rutaCompleta),
-	                imagen.getBytes()
+	        Files.write( Paths.get(rutaCompleta), imagen.getBytes()
 	        );
 
 	        userUpdate.setImagenUser(nombreImagen);
@@ -180,6 +178,14 @@ public class UserServiceImplement implements UserService {
 		return userMapper.userToDTO(userUpdate);
 	}
 
+	@Override
+	@Transactional
+	public void eliminarUsuario(Long id) {
+
+	    UserEntity usuario = usuarioRepository.findById(id).orElseThrow(() ->new RuntimeException("Usuario no encontrado"));
+
+	    usuarioRepository.delete(usuario);
+	}
 	
 	
 	

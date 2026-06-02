@@ -47,21 +47,24 @@ public class UserEntity  implements Serializable{
 	private LocalDate fechaCambioUser;
 	
 	// User - Libros N:M (USER_LIBRO)
-	@OneToMany(mappedBy="usuarioLibro")
+	@OneToMany(mappedBy="usuarioLibro", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<UserLibroEntity> userLibro = new HashSet<>();
 	
 	// User - Foro N:M (USER_FORO)
-	@OneToMany(mappedBy="usuario")
+	@OneToMany(mappedBy="usuario", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<UserForoEntity> usuarioForo = new HashSet<>();
 	
+	@OneToMany(mappedBy = "usuarioMensaje", cascade = CascadeType.ALL,orphanRemoval = true)
+	private Set<MensajeForoEntity> mensajesForo = new HashSet<>();
+	
 	// User - Opinion 1:N
-	@OneToMany(mappedBy="usuarioOpinion")
+	@OneToMany(mappedBy="usuarioOpinion", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<OpinionEntity> opinionUser = new HashSet<>();
 	
-	@OneToMany(mappedBy="emisor")
+	@OneToMany(mappedBy="emisor", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<MensajePrivadoEntity> mensajesEnviadosP = new HashSet<>();
 	
-	@OneToMany(mappedBy="receptor")
+	@OneToMany(mappedBy="receptor", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<MensajePrivadoEntity> mensajesRecibidos = new HashSet<>();
 	
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)

@@ -44,6 +44,7 @@ public class UserMapper {
         dto.setFechaPublicacion(libro.getFechaPublicacion());
         dto.setValoracion(libro.getValoracion());
         dto.setGeneros(libro.getGenerosLibro().stream().map(lg -> lg.getGenero().getNombre()).toList());
+        dto.setSaga(!libro.getSagas().isEmpty() ? libro.getSagas().get(0).getSaga().getTipo().toString() : "Libro único");
 
         return dto;
     }

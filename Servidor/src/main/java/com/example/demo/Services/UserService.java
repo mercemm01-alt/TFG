@@ -15,4 +15,6 @@ public interface UserService {
 	InterfaceUserDTO obtenerUser(Long id);
 	
 	InterfaceUserDTO actualizarPerfil(InterfaceUserDTO dtoActualizarPerfil, MultipartFile imagen) throws Exception;
+	
+	void eliminarUsuario(Long id);
 }

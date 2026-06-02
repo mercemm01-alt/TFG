@@ -224,6 +224,21 @@
         order: 3;
         color: var(--cl-blanco);
     }
+
+.btn-cerrar-sesion{
+    background-color:#e74c3c;
+    color:white;
+    border:none;
+    border-radius:25px;
+    padding:.6rem 1.2rem;
+    cursor:pointer;
+    font-weight:600;
+    transition:.2s;
+}
+
+.btn-cerrar-sesion:hover{
+    background-color:#c0392b;
+}
 }
 
 @font-face{

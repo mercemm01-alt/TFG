@@ -33,6 +33,13 @@ function Header() {
             navigate(`/libro/${idLibro}`); 
         };
 
+        const cerrarSesion = () => {
+
+            localStorage.clear();
+
+            navigate("/login");
+        };
+
     return (
         <header>
 
@@ -81,6 +88,7 @@ function Header() {
                         <Link to="/mis-libros" className="link-nav">Mis Libros</Link>
                         <Link to="/recomendaciones" className="link-nav">Recomendaciones</Link>
                         <Link to="/foro" className="link-nav">Foro</Link>
+                        <button className="btn-cerrar-sesion" onClick={cerrarSesion}> Cerrar sesión </button>
 
                         {/* Buscador */}
                         <div className="contenedor-buscador">

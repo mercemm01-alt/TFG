@@ -14,11 +14,12 @@ public class LibroDTO {
     private String fechaPublicacion;
     private Double valoracion;
     private List<String> generos;
+    private String saga;
     
     public LibroDTO() {};
 
 	public LibroDTO(Long idLibro, String titulo, String autor, String editorial, Integer numPaginas, String sinopsis,
-			String imagen, String fechaPublicacion, Double valoracion, List<String> generos) {
+			String imagen, String fechaPublicacion, Double valoracion, List<String> generos, String saga) {
 		super();
 		this.idLibro = idLibro;
 		this.titulo = titulo;
@@ -30,6 +31,7 @@ public class LibroDTO {
 		this.fechaPublicacion = fechaPublicacion;
 		this.valoracion = valoracion;
 		this.generos = generos;
+		this.saga = saga;
 	}
 
 
@@ -112,6 +114,14 @@ public class LibroDTO {
 
 	public void setGeneros(List<String> generos) {
 		this.generos = generos;
+	}
+
+	public String getSaga() {
+		return saga;
+	}
+
+	public void setSaga(String saga) {
+		this.saga = saga;
 	}
 
 	@Override
