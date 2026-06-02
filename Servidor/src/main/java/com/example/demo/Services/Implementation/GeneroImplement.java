@@ -18,10 +18,7 @@ public class GeneroImplement implements GeneroService{
 	@Override
 	public List<String> obtenerGeneros() {
 		
-		 return generoRepository.findAll()
-		            .stream()
-		            .map(GeneroEntity::getNombre)
-		            .toList();
+		 return generoRepository.findAll().stream().map(GeneroEntity::getNombre).toList();
 	}
 
 }

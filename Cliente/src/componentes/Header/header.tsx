@@ -88,7 +88,7 @@ function Header() {
                                 <input 
                                     className="bus" 
                                     type="search" 
-                                    placeholder="Nombre del libro" 
+                                    placeholder="Título del libro" 
                                     value={busqueda} onChange={(e) => 
                                     buscarLibros(e.target.value) } 
                                 /> 

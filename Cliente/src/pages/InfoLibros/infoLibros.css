@@ -124,16 +124,22 @@
 
 /* ESTRELLAS */
 
+.estrellas{
+    display:flex;
+    gap:5px;
+}
+
 .star{
     color:#bbb;
     cursor:pointer;
-    transition:.3s;
+    font-size:1.8rem;
+    transition:color .2s;
 }
 
-.star:hover,
 .star.checked{
-    color:rgb(231,201,31);
+    color:rgb(231, 201, 31);
 }
+
 
 /* RESPONSIVE */
 

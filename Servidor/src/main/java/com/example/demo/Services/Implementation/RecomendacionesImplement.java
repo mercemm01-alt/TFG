@@ -25,12 +25,11 @@ public class RecomendacionesImplement implements RecomendacionesService{
 	 
 	@Override
 	public List<LibroDTO> obtenerRecomendaciones(Long idUser) {
+		
 		 Set<LibroEntity> recomendaciones = new LinkedHashSet<>();
 
 	        recomendaciones.addAll(recomendacionesRepository.recomendarPorSaga(idUser));
-
 	        recomendaciones.addAll(recomendacionesRepository.recomendarPorAutor(idUser));
-
 	        recomendaciones.addAll(recomendacionesRepository.recomendarPorGeneros(idUser));
 
 	        List<LibroDTO> resultado = new ArrayList<>();

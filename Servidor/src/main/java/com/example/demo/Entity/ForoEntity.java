@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,7 +43,7 @@ public class ForoEntity implements Serializable{
 	@JoinColumn(name = "CREADOR_ID", nullable = false)
 	private UserEntity creador;
 	
-	@OneToMany(mappedBy="foroMensaje")
+	@OneToMany(mappedBy="foroMensaje",  cascade = CascadeType.ALL)
 	private Set<MensajeForoEntity> mensajesEnviadosF = new HashSet<>();
 
 	public Long getIdForo() {

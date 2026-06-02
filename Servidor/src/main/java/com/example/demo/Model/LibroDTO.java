@@ -1,5 +1,7 @@
 package com.example.demo.Model;
 
+import java.util.List;
+
 public class LibroDTO {
 	
 	private Long idLibro;
@@ -11,11 +13,13 @@ public class LibroDTO {
     private String imagen;
     private String fechaPublicacion;
     private Double valoracion;
+    private List<String> generos;
     
     public LibroDTO() {};
-    
+
 	public LibroDTO(Long idLibro, String titulo, String autor, String editorial, Integer numPaginas, String sinopsis,
-			String imagen, String fechaPublicacion, Double valoracion) {
+			String imagen, String fechaPublicacion, Double valoracion, List<String> generos) {
+		super();
 		this.idLibro = idLibro;
 		this.titulo = titulo;
 		this.autor = autor;
@@ -25,7 +29,10 @@ public class LibroDTO {
 		this.imagen = imagen;
 		this.fechaPublicacion = fechaPublicacion;
 		this.valoracion = valoracion;
+		this.generos = generos;
 	}
+
+
 
 	public Long getIdLibro() {
 		return idLibro;
@@ -99,12 +106,20 @@ public class LibroDTO {
 		this.valoracion = valoracion;
 	}
 
+	public List<String> getGeneros() {
+		return generos;
+	}
+
+	public void setGeneros(List<String> generos) {
+		this.generos = generos;
+	}
+
 	@Override
 	public String toString() {
 		return "LibroDTO [idLibro=" + idLibro + ", titulo=" + titulo + ", autor=" + autor + ", editorial=" + editorial
 				+ ", numPaginas=" + numPaginas + ", sinopsis=" + sinopsis + ", imagen=" + imagen + ", fechaPublicacion="
-				+ fechaPublicacion + ", valoracion=" + valoracion + "]";
+				+ fechaPublicacion + ", valoracion=" + valoracion + ", generos=" + generos + "]";
 	}
-    
+
     
 }

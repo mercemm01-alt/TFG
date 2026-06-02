@@ -48,18 +48,34 @@ function ForoChat() {
     }
 
     return (
-        <div>
-            <h2>Chat foro</h2>
-            <div>{mensajes.map((mensaje) => (
-                    <MensajeCard key={mensaje.idMensaje} mensaje={mensaje}/>
-                ))}
+        <div className="foro-chat">
+            <h2>Chat del foro</h2>
+
+            <div className="chat-mensajes">
+                {
+                    mensajes.length > 0 ? (
+                        mensajes.map((mensaje) => (
+                            <MensajeCard key={mensaje.idMensaje} mensaje={mensaje}/>
+                        ))
+                    ) : (
+                        <p className="chat-vacio"> Aún no hay mensajes en este foro.</p>
+                    )
+                }
             </div>
 
-            <input type="text" value={contenido}
-                onChange={(e) => setContenido(e.target.value)}
-            />
+            <div className="chat-envio">
+                <input
+                    className="chat-input"
+                    type="text"
+                    placeholder="Escribe un mensaje..."
+                    value={contenido}
+                    onChange={(e) =>
+                        setContenido(e.target.value)
+                    }
+                />
 
-            <button onClick={enviarMensaje}> Enviar </button>
+                <button className="btn-enviar" onClick={enviarMensaje}>Enviar</button>
+            </div>
         </div>
     )
 }

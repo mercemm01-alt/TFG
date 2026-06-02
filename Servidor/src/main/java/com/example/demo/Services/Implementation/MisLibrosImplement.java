@@ -1,5 +1,6 @@
 package com.example.demo.Services.Implementation;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -51,6 +52,7 @@ public class MisLibrosImplement implements MisLibrosService{
         }
 
         ul.setEstado(Estado.valueOf(estado));
+        ul.setFechaEstado(LocalDateTime.now());
 
         userLibroRepository.save(ul);
     }
@@ -73,11 +75,7 @@ public class MisLibrosImplement implements MisLibrosService{
 	@Override
 	public String obtenerEstado(Long idUser, Long idLibro) {
 
-	    Optional<UserLibroEntity> ul =
-	        userLibroRepository
-	        .findByUsuarioLibroIdUserAndLibroUserIdLibro(
-	                idUser,
-	                idLibro);
+	    Optional<UserLibroEntity> ul = userLibroRepository.findByUsuarioLibroIdUserAndLibroUserIdLibro(idUser, idLibro);
 
 	    if (ul.isPresent()) {
 	        return ul.get().getEstado().name();
@@ -88,16 +86,16 @@ public class MisLibrosImplement implements MisLibrosService{
 
 	@Override
 	public LibroDTO obtenerLecturaActual(Long idUser) {
+		
 		List<UserLibroEntity> leyendo = userLibroRepository.buscarPorEstadoOrdenados(idUser, Estado.LEYENDO);
+
+	    leyendo.forEach(l -> System.out.println("Libro: " + l.getLibroUser().getTitulo() + " Fecha: "+ l.getFechaEstado()));
 
 	    if (leyendo.isEmpty()) {
 	        return null;
 	    }
 
-	    LibroEntity libro =
-	            leyendo.get(0).getLibroUser();
-
-	    return mapper.libroToDTO(libro);
+	    return mapper.libroToDTO(leyendo.get(0).getLibroUser());
 	}
 
 	@Override
@@ -109,15 +107,13 @@ public class MisLibrosImplement implements MisLibrosService{
 	    int limite = Math.min(leidos.size(), 3);
 
 	    for (int i = 0; i < limite; i++) {
+	    	
 	        LibroEntity libro = leidos.get(i).getLibroUser();
 
-	        resultado.add(mapper.libroToDTO(libro)
-	        );
+	        resultado.add(mapper.libroToDTO(libro));
 	    }
 
 	    return resultado;
 	}
-	
-	
 
 }

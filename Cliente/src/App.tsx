@@ -37,6 +37,7 @@ function AppContent() {
           <Route path="/crear-foro" element={<CrearForo/>}/>
           <Route path="/mis-libros" element={<MisLibros/>}/>
           <Route path="/avisos-legales" element={<AvisosLegales />}/>
+          <Route path="/editar-foro/:idForo" element={<CrearForo />}/>
         </Routes>
       </main>
 

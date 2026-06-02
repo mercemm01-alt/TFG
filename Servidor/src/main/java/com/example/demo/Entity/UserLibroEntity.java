@@ -72,6 +72,14 @@ public class UserLibroEntity implements Serializable {
 		this.libroUser = libroUser;
 	}
 
+	public LocalDateTime getFechaEstado() {
+		return fechaEstado;
+	}
+
+	public void setFechaEstado(LocalDateTime fechaEstado) {
+		this.fechaEstado = fechaEstado;
+	}
+
 	@Override
 	public String toString() {
 		return "UserLibroEntity [idUl=" + idUl + ", estado=" + estado + ", usuarioLibro=" + usuarioLibro

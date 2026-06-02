@@ -1,65 +1,91 @@
+/* CONTENEDOR */
 .crear-foro{
-    max-width:900px;
-    margin:2rem auto;
-    background:var(--cl-blanco);
-    padding:2rem;
-    border-radius:12px;
-    box-shadow:0 4px 12px rgb(0 0 0 / 15%);
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: var(--cl-blanco);
+    border-radius: 12px;
+    box-shadow: var(--sombra-media);
+
+    display: flex;
+    flex-direction: column;
 }
 
-.crear-foro h2{
-    text-align:center;
-    margin-bottom:2rem;
-    font-family:var(--lt-titulos);
-    font-size:2.5rem;
+/* TITULO */
+.crear-foro h1{
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: var(--lt-titulos);
 }
 
-.campo-foro{
-    display:flex;
-    flex-direction:column;
-    margin-bottom:1.5rem;
+/* LABELS */
+.crear-foro label{
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    font-weight: 600;
 }
 
-.campo-foro label{
-    margin-bottom:.5rem;
-    font-weight:bold;
+/* INPUT NOMBRE */
+.crear-foro input[type="text"]{
+    width: 100%;
+    padding: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: var(--cl-blanco);
 }
 
-.campo-foro input,
-.campo-foro textarea{
-    padding:.8rem;
-    border:1px solid #ccc;
-    border-radius:8px;
-    font-family:inherit;
+/* TEXTAREA */
+.crear-foro textarea{
+    width: 100%;
+    min-height: 180px;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: vertical;
+    background-color: var(--cl-blanco);
 }
 
-.campo-foro textarea{
-    min-height:150px;
-    resize:vertical;
+/* INPUT IMAGEN */
+.crear-foro input[type="file"]{
+    padding: 1rem;
+    border: 2px dashed var(--cl-nav);
+    border-radius: 8px;
+    background-color: #fafafa;
+    cursor: pointer;
 }
 
-.preview-foro{
-    text-align:center;
-    margin-top:1rem;
+/* BOTON */
+.crear-foro button{
+    margin-top: 2rem;
+    align-self: center;
+
+    background-color: var(--cl-bt);
+    color: var(--cl-blanco);
+
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 8px;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    transition: all .2s ease;
 }
 
-.preview-foro img{
-    max-width:200px;
-    border-radius:10px;
+.crear-foro button:hover{
+    background-color: var(--cl-sec);
+    transform: translateY(-2px);
 }
 
-.btn-crear-foro{
-    display:block;
-    margin:2rem auto 0;
-    padding:.8rem 2rem;
-    border:none;
-    border-radius:999px;
-    background:var(--cl-bt);
-    color:var(--cl-blanco);
-    cursor:pointer;
-    font-size:1.1rem;
-}
+/* RESPONSIVE */
+@media screen and (width <= 768px){
 
-.btn-crear-foro:hover{
-    opacity:.9;
+    .crear-foro{
+        margin: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .crear-foro button{
+        width: 100%;
+    }
 }

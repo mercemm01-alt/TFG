@@ -43,6 +43,7 @@ public class UserMapper {
         dto.setImagen(libro.getImagen());
         dto.setFechaPublicacion(libro.getFechaPublicacion());
         dto.setValoracion(libro.getValoracion());
+        dto.setGeneros(libro.getGenerosLibro().stream().map(lg -> lg.getGenero().getNombre()).toList());
 
         return dto;
     }

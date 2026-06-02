@@ -1,0 +1,146 @@
+/* CONTENEDOR PRINCIPAL */
+.editar-perfil-form{
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 2rem;
+
+    background-color: var(--cl-blanco);
+    border-radius: 12px;
+    box-shadow: var(--sombra-media);
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* TITULO */
+.editar-perfil-form h2{
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: var(--lt-titulos);
+}
+
+/* CAMPOS */
+.campo-formulario{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+
+.campo-formulario label{
+    font-weight: 600;
+    margin-bottom: .5rem;
+}
+
+/* INPUTS */
+.campo-formulario input[type="text"],
+.campo-formulario input[type="password"],
+.campo-formulario textarea{
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.campo-formulario textarea{
+    min-height: 180px;
+    resize: vertical;
+}
+
+/* ZONA IMAGEN */
+.campo-formulario-imagen{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.preview-imagen{
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: var(--sombra-media);
+    margin-bottom: 1rem;
+}
+
+/* INPUT FILE */
+.campo-formulario-imagen input[type="file"]{
+    max-width: 300px;
+}
+
+/* GENEROS */
+.lista-generos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .75rem;
+    margin-top: 1rem;
+}
+
+.btn-genero{
+    border: none;
+    padding: .7rem 1.2rem;
+    border-radius: 25px;
+    background-color: #e5e5e5;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.btn-genero:hover{
+    transform: translateY(-2px);
+}
+
+.btn-genero.activo{
+    background-color: var(--cl-bt);
+    color: white;
+}
+
+/* BOTON GUARDAR */
+.btn-guardar-perfil{
+    align-self: center;
+
+    margin-top: 2rem;
+
+    background-color: var(--cl-bt);
+    color: white;
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 1rem 2rem;
+
+    font-size: 1rem;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.btn-guardar-perfil:hover{
+    background-color: var(--cl-sec);
+}
+
+/* MENSAJES */
+.mensaje-error{
+    text-align: center;
+    color: #B16D6D;
+    margin-bottom: 1rem;
+}
+
+/* RESPONSIVE */
+@media (width <= 768px){
+
+    .editar-perfil-form{
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    .preview-imagen{
+        width: 180px;
+        height: 180px;
+    }
+
+    .btn-guardar-perfil{
+        width: 100%;
+    }
+}

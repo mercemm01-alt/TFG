@@ -49,13 +49,8 @@ public class UserController {
     }
     
     @PutMapping(value = "/editarPerfil/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<InterfaceUserDTO> actualizarPerfil(
-            @PathVariable Long id,
-            @RequestPart("userJson") String userJson,
-            @RequestPart(value = "imagen", required = false)
-            MultipartFile imagen
-
-    ) throws Exception {
+    public ResponseEntity<InterfaceUserDTO> actualizarPerfil(@PathVariable Long id, @RequestPart("userJson") String userJson, 
+    		@RequestPart(value = "imagen", required = false)MultipartFile imagen) throws Exception {
 
         InterfaceUserDTO dtoActualizarPerfil = objectMapper.readValue(userJson, InterfaceUserDTO.class);
 

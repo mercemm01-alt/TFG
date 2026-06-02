@@ -6,68 +6,65 @@ import "./infoLibros.css";
 function InfoLibro() {
 
     const { id } = useParams();
-
     const [libro, setLibro] = useState<any>(null);
     const [error, setError] = useState("");
     const [estado, setEstado] = useState("");
+    const [miValoracion, setMiValoracion] = useState(0);
+    const [notas, setNotas] = useState("");
+    const [opinion, setOpinion] = useState<any>(null);
 
     useEffect(() => {
 
         const cargarLibro = async () => {
 
             try {
-
                 const data = await apiFetch(`/libros/${id}`);
-
                 setLibro(data);
 
-                const idUser = Number(
-                    localStorage.getItem("idUser")
-                );
-
+                const idUser = Number(localStorage.getItem("idUser"));
                 const respuesta = await apiFetch(`/mis-libros/${id}/estado?idUser=${idUser}`);
-
                 setEstado(respuesta.estado || "");
+                
+                try{
+                    const opinion = await apiFetch(`/opiniones/${id}?idUser=${idUser}`);
 
+                    if(opinion){
+                        setMiValoracion(opinion.valoracion);
+                        setNotas(opinion.comentario || "");
+                        setOpinion(opinion);
+                    }
+                }catch{
+                     // No hay opinión todavía
+                    setMiValoracion(0);
+                    setNotas("");
+                }
             } catch (err) {
-
                 console.error(err);
                 setError("Error al cargar libro");
-
             }
         };
 
         if (id) {
             cargarLibro();
         }
-
     }, [id]);
 
-    const cambiarEstado = async (
-        e: React.ChangeEvent<HTMLSelectElement>
-    ) => {
+    const cambiarEstado = async (e: React.ChangeEvent<HTMLSelectElement>) => {
 
         const nuevoEstado = e.target.value;
-
         setEstado(nuevoEstado);
 
-        const idUser = Number(
-            localStorage.getItem("idUser")
-        );
+        const idUser = Number(localStorage.getItem("idUser"));
 
         try {
-
-            await apiFetch(
-                `/mis-libros/${id}/estado?idUser=${idUser}&estado=${nuevoEstado}`,
+            await apiFetch(`/mis-libros/${id}/estado?idUser=${idUser}&estado=${nuevoEstado}`,
                 {
                     method: "POST"
                 }
             );
 
         } catch (error) {
-
             console.error(error);
-
         }
     };
 
@@ -81,35 +78,26 @@ function InfoLibro() {
 
     return (
         <main className="container my-5">
-
             <article className="ficha-libro">
-
                 <div className="cabecera-libro">
-
                     <div className="portada-libro">
-
                         <img
                             src={libro.imagen}
                             alt={libro.titulo}
                         />
-
                     </div>
 
                     <div className="datos-libro">
-
                         <h2>{libro.titulo}</h2>
-
                         <table className="info">
-
                             <tbody>
-
                                 <tr>
                                     <th>Autor:</th>
                                     <td>{libro.autor || "Desconocido"}</td>
                                 </tr>
 
                                 <tr>
-                                    <th>Género:</th>
+                                    <th>Géneros:</th>
                                     <td>
                                         {
                                             libro.generos?.length > 0
@@ -141,76 +129,81 @@ function InfoLibro() {
 
                                 <tr>
                                     <th>Mi valoración:</th>
-                                    <td>☆☆☆☆☆</td>
+                                    <td>
+                                        <div className="estrellas">
+                                            {[1, 2, 3, 4, 5].map((estrella) => (
+                                                <span
+                                                    key={estrella}
+                                                    className={
+                                                        estrella <= miValoracion
+                                                            ? "star checked"
+                                                            : "star"
+                                                    }
+                                                    onClick={async() => {
+                                                        const nuevaValoracion = miValoracion === estrella ? 0 : estrella;
+                                                        setMiValoracion(nuevaValoracion);
+
+                                                        try {
+                                                            await apiFetch(`/opiniones/${id}`,
+                                                                {
+                                                                    method: "POST",
+                                                                    body: JSON.stringify({
+                                                                        idUser: Number(localStorage.getItem("idUser")
+                                                                        ),
+                                                                        valoracion: nuevaValoracion,
+                                                                        comentario: notas
+                                                                    })
+                                                                }
+                                                            );
+                                                        } catch (error) {
+                                                            console.error("Error al guardar valoración",error);
+                                                        }
+                                                    }}
+                                                >
+                                                    ★
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </td>
                                 </tr>
-
                             </tbody>
-
                         </table>
-
                     </div>
-
                 </div>
 
                 <div className="parte-inferior">
-
                     <div className="estado-libro">
-
                         <select
                             value={estado}
                             onChange={cambiarEstado}
                         >
-
-                            <option value="">
-                                Estado
-                            </option>
-
-                            <option value="PENDIENTE">
-                                Pendiente
-                            </option>
-
-                            <option value="LEYENDO">
-                                Leyendo
-                            </option>
-
-                            <option value="LEIDO">
-                                Leído
-                            </option>
-
+                            <option value=""> Estado</option>
+                            <option value="PENDIENTE"> Pendiente</option>
+                            <option value="LEYENDO"> Leyendo</option>
+                            <option value="LEIDO"> Leído</option>
                         </select>
-
                     </div>
 
                     <div className="contenido-derecha">
-
                         <div className="sinopsis">
-
                             <h4>Sinopsis</h4>
-
                             <p>
                                 {
                                     libro.sinopsis ||
                                     "Sin sinopsis disponible"
                                 }
                             </p>
-
                         </div>
 
                         <div className="notas">
-
                             <input
                                 type="text"
                                 placeholder="Notas:"
                             />
-
                         </div>
-
                     </div>
-
                 </div>
-
             </article>
-
         </main>
     );
 }

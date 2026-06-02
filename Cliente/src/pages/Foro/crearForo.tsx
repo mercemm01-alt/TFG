@@ -1,47 +1,129 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { apiFetch } from "../../services/api";
 import "./crearForo.css";
+
 function CrearForo() {
 
     const navigate = useNavigate();
+    const { idForo } = useParams();
+
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
-    const [img, setImg] = useState("");
-    const crearForo = async () => {
-        await apiFetch("/foro?idUser=1",
-            {
-                method: "POST",
-                body: JSON.stringify({
-                    nombre,
-                    descripcion,
-                    img
-                })
+    const [imagen, setImagen] = useState<File | null>(null);
+    const [preview, setPreview] = useState("");
+
+    useEffect(() => {
+
+        const cargarForo = async () => {
+
+            if (!idForo) return;
+
+            try {
+                const data = await apiFetch(`/foro/${idForo}?idUser=${localStorage.getItem("idUser")}`);
+
+                setNombre(data.nombre);
+                setDescripcion(data.descripcion);
+
+                if (data.img) {
+                    setPreview(`http://localhost:8080/img/${data.img}`);
+                }
+
+            } catch (error) {
+                console.error(error);
             }
-        );
-        navigate("/foro");
-    }
+        };
+        cargarForo();
+    }, [idForo]);
+
+    const crearForo = async () => {
+
+        try {
+            const foro = { nombre, descripcion};
+            const form = new FormData();
+
+            form.append("foroJson", JSON.stringify(foro));
+
+            if (imagen) {
+                form.append("imagen", imagen);
+            }
+
+            const url = idForo ? `http://localhost:8080/api/foro/${idForo}?idUser=${localStorage.getItem("idUser")}`
+                : `http://localhost:8080/api/foro?idUser=${localStorage.getItem("idUser")}`;
+
+            const metodo = idForo ? "PUT"
+                : "POST";
+
+            const respuesta = await fetch(
+                url,
+                {
+                    method: metodo,
+                    body: form
+                }
+            );
+
+            if (!respuesta.ok) {
+                throw new Error("Error al crear el foro");
+            }
+            navigate("/foro");
+
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
-        <div>
-            <h1>Crear foro</h1>
+        <div className="crear-foro">
+            <h1> { idForo ? "Editar foro" : "Crear foro"} </h1>
 
-            <input type="text" placeholder="Nombre" value={nombre}
-                onChange={(e) => setNombre(e.target.value)
+            {
+                preview && ( <img className="preview-imagen" src={preview} alt="Vista previa" />)
+            }
+
+            <label htmlFor="nombreForo"> Nombre del foro </label>
+            <input
+                id="nombreForo"
+                type="text"
+                placeholder="Nombre"
+                value={nombre}
+                onChange={(e) =>
+                    setNombre(e.target.value)
                 }
             />
 
-            <textarea placeholder="Descripción" value={descripcion}
-                onChange={(e) => setDescripcion(e.target.value) }
+            <label htmlFor="descripcionForo"> Descripción </label>
+            <textarea
+                id="descripcionForo"
+                placeholder="Descripción"
+                value={descripcion}
+                onChange={(e) =>
+                    setDescripcion(
+                        e.target.value
+                    )
+                }
             />
 
-            <input type="text" placeholder="Imagen" value={img}
-                onChange={(e) => setImg(e.target.value)}
+            <label htmlFor="imagenForo"> Imagen </label>
+            <input
+                id="imagenForo"
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+
+                    const archivo = e.target.files?.[0];
+
+                    if (!archivo) return;
+
+                    setImagen(archivo);
+                    setPreview( URL.createObjectURL(archivo) );
+                }}
             />
 
-            <button onClick={crearForo}> Crear </button>
+            <button type="button" onClick={crearForo}>
+                { idForo ? "Guardar cambios" : "Crear foro" }
+            </button>
         </div>
-    )
+    );
 }
 
 export default CrearForo;

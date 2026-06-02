@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { apiFetch } from "../../services/api";
-
+import "./editarPerfil.css";
 function EditarPerfil() {
 
     const [formData, setFormData] = useState({
@@ -53,10 +53,7 @@ function EditarPerfil() {
             try {
 
                 const data = await apiFetch("/libros/generos");
-
-                setGenerosDisponibles(
-                    Array.isArray(data) ? data : []
-                );
+                setGenerosDisponibles(Array.isArray(data) ? data : []);
 
             } catch (err) {
                 console.error(err);
@@ -67,12 +64,9 @@ function EditarPerfil() {
         cargarGeneros();
     }, []);
 
-    const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
 
         const { name, value } = e.target;
-
         setFormData(prev => ({
             ...prev,
             [name]: value
@@ -83,16 +77,11 @@ function EditarPerfil() {
 
         setFormData(prev => ({
             ...prev,
-
-            generos: prev.generos.includes(genero)
-                ? prev.generos.filter(g => g !== genero)
-                : [...prev.generos, genero]
+            generos: prev.generos.includes(genero) ? prev.generos.filter(g => g !== genero) : [...prev.generos, genero]
         }));
     };
 
-    const envio = async (e: React.FormEvent) => {
-
-        e.preventDefault();
+    const envio = async (e: React.FormEvent) => { e.preventDefault();
 
         setError("");
 
@@ -112,17 +101,13 @@ function EditarPerfil() {
 
             const form = new FormData();
 
-            form.append(
-                "userJson",
-                JSON.stringify(usuarioActualizar)
-            );
+            form.append("userJson", JSON.stringify(usuarioActualizar));
 
             if (imagen) {
                 form.append("imagen", imagen);
             }
 
-            await fetch(
-                `http://localhost:8080/api/editarPerfil/${idUser}`,
+            await fetch(`http://localhost:8080/api/editarPerfil/${idUser}`,
                 {
                     method: "PUT",
                     body: form
@@ -137,115 +122,112 @@ function EditarPerfil() {
     };
 
     return (
-        <form onSubmit={envio}>
+        <form className="editar-perfil-form" onSubmit={envio}>
 
             <h2>Editar perfil</h2>
+            {
+                error && (
+                    <p className="mensaje-error"> {error}</p>
+                )
+            }
 
-            {error && <p>{error}</p>}
+            {/* IMAGEN */}
+            <div className="campo-formulario-imagen">
+                {
+                    preview && (
+                        <img className="preview-imagen" src={preview} alt="Vista previa"/>
+                    )
+                }
 
-            <div>
-                <label>Nombre de usuario</label>
+                <input type="file" accept="image/*"
+                    onChange={(e) => {
+                        
+                        if (e.target.files && e.target.files[0]) {
 
+                            const file = e.target.files[0];
+                            setImagen(file);
+                            setPreview( URL.createObjectURL(file));
+                        }
+                    }}
+                />
+            </div>
+
+            {/* USUARIO */}
+            <div className="campo-formulario">
+                <label htmlFor="user"> Nombre de usuario</label>
                 <input
+                    id="user"
+                    type="text"
                     name="user"
                     value={formData.user}
                     onChange={handleChange}
                 />
+
             </div>
 
-            <div>
-                <label>Nueva contraseña</label>
-
+            {/* CONTRASEÑA */}
+            <div className="campo-formulario">
+                <label htmlFor="password"> Nueva contraseña</label>
                 <input
+                    id="password"
                     type="password"
                     name="contrasena"
                     value={formData.contrasena}
                     onChange={handleChange}
                 />
+
             </div>
 
-            <div>
-                <label>Confirmar contraseña</label>
-
+            {/* CONFIRMAR CONTRASEÑA */}
+            <div className="campo-formulario">
+                <label htmlFor="passConfirm"> Confirmar contraseña</label>
                 <input
+                    id="passConfirm"
                     type="password"
                     name="confirmarContrasena"
                     value={formData.confirmarContrasena}
                     onChange={handleChange}
                 />
+
             </div>
 
-            <div>
-                <label>Imagen</label>
-
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => {
-
-                        if (
-                            e.target.files &&
-                            e.target.files[0]
-                        ) {
-
-                            const file = e.target.files[0];
-
-                            setImagen(file);
-                            setPreview(
-                                URL.createObjectURL(file)
-                            );
-                        }
-                    }}
-                />
-
-                {preview && (
-                    <img
-                        src={preview}
-                        alt="preview"
-                        width="150"
-                    />
-                )}
-            </div>
-
-            <div>
-                <label>Descripción</label>
-
+            {/* DESCRIPCION */}
+            <div className="campo-formulario">
+                <label htmlFor="descrip">  Descripción</label>
                 <textarea
+                    id="descrip"
                     name="descripcion"
                     value={formData.descripcion}
                     onChange={handleChange}
                 />
             </div>
 
-            <div>
-                <label>Géneros</label>
+            {/* GENEROS */}
+            <div className="campo-formulario">
 
-                <div>
-                    {generosDisponibles.map(g => (
-
-                        <button
-                            key={g}
-                            type="button"
-                            onClick={() => toggleGenero(g)}
-                            style={{
-                                margin: "5px",
-                                backgroundColor:
-                                    formData.generos.includes(g)
-                                        ? "#6c757d"
-                                        : "#e9ecef"
-                            }}
-                        >
-                            {g}
-                        </button>
-
-                    ))}
+                <label htmlFor="generosFav">Géneros favoritos</label>
+                <div className="lista-generos" >
+                    {
+                        generosDisponibles.map(
+                            (genero) => (
+                                <button key={genero} type="button"
+                                    className={
+                                        formData.generos.includes( genero ) ? "btn-genero activo": "btn-genero"
+                                    }
+                                    onClick={() =>
+                                        toggleGenero(genero)
+                                    }
+                                >
+                                    {genero}
+                                </button>
+                            )
+                        )
+                    }
                 </div>
             </div>
 
-            <button type="submit">
-                Guardar cambios
-            </button>
-
+            {/* BOTON GUARDAR */}
+            <button type="submit" className="btn-guardar-perfil"> Guardar cambios</button>
         </form>
     );
 }
