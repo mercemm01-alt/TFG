@@ -123,7 +123,7 @@ function EditarPerfil() {
 
     const eliminarCuenta = async () => {
         try {
-            const respuesta = await apiFetch(`/usuario/${idUser}`,
+            await apiFetch(`/usuario/${idUser}`,
                 {
                     method: "DELETE"
                 }
