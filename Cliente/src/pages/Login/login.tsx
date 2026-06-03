@@ -5,7 +5,7 @@ import { useState } from 'react';
 import './login.css'
 
 export const loginUser = (datos: LoginDTO) => {
-    return apiFetch("/login", {
+    return apiFetch("/", {
         method: "POST",
         body: JSON.stringify({
             user: datos.user.trim(),
