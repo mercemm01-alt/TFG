@@ -10,7 +10,7 @@ type Props = {
 
 function TarjetaForo({ foro, onEliminar }: Props) {
 
-    const BACKEND_URL = "https://tfg-z11h.onrender.com/";
+    const BACKEND_URL = "https://tfg-z11h.onrender.com/api";
     const navigate = useNavigate();
     const [mostrarConfirmacion, setMostrarConfirmacion] = useState(false);
     const imagenForo = foro.img ? `${BACKEND_URL}/img/${foro.img}` : "/default-foro.png";
