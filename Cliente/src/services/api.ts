@@ -1,4 +1,4 @@
-const API_URL = "https://tfg-z11h.onrender.com/api";
+const API_URL = "https://tfg-z11h.onrender.com";
 
 export const apiFetch = async (endpoint: string, options: RequestInit = {}) => {
     const response = await fetch(`${API_URL}${endpoint}`, {
