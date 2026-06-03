@@ -38,7 +38,7 @@ public class UserController {
     	return usuarioService.registrarUsuario(dtoRegistro);
     }
     
-    @PostMapping("/login")
+    @PostMapping("/inicio")
     public LoginDTO login(@RequestBody LoginDTO dtoLogin) {
     	return usuarioService.login(dtoLogin);
     }
