@@ -17,7 +17,7 @@ import AvisosLegales from "./pages/Legal/avisosLegales";
 function AppContent() {
   const location = useLocation();
 
-  const sinHeader = ["/login", "/registro"];
+  const sinHeader = ["/", "/registro"];
 
   return (
     <div className="app-container">
