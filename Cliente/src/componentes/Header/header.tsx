@@ -37,7 +37,7 @@ function Header() {
 
             localStorage.clear();
 
-            navigate("/");
+            navigate("/login");
         };
 
     return (
@@ -53,7 +53,7 @@ function Header() {
                 <div className="menu">
 
                     {/* Logo */}
-                    <Link to="/inicio" className="logo">
+                    <Link to="/" className="logo">
                         <img src="/Recursos/Img/Logo22.png" alt="Logo 22" />
                     </Link>
 
@@ -84,7 +84,7 @@ function Header() {
                         </button>
 
                         {/* Links */}
-                        <Link to="/inicio" className="link-nav">Inicio</Link>
+                        <Link to="/" className="link-nav">Inicio</Link>
                         <Link to="/mis-libros" className="link-nav">Mis Libros</Link>
                         <Link to="/recomendaciones" className="link-nav">Recomendaciones</Link>
                         <Link to="/foro" className="link-nav">Foro</Link>
