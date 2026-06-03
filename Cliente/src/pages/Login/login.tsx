@@ -36,7 +36,7 @@ function Login() {
             localStorage.setItem("user", data.user);
 
             // Redirigir
-            navigate("/login");
+            navigate("/");
 
         } catch (err: any) {
             setError(err.message || "Error en el login");
