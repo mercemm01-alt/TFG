@@ -8,20 +8,20 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class CorsConfig {
-	
-	@Bean
+
+    @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
+
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:5173")
+                        .allowedOriginPatterns("*")
                         .allowedMethods("*");
             }
-            
+
             @Override
             public void addResourceHandlers(ResourceHandlerRegistry registry) {
-
                 registry.addResourceHandler("/img/**")
                         .addResourceLocations("file:uploads/img/");
             }
