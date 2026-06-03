@@ -11,7 +11,7 @@ function InfoLibro() {
     const [estado, setEstado] = useState("");
     const [miValoracion, setMiValoracion] = useState(0);
     const [notas, setNotas] = useState("");
-    const [opinion, setOpinion] = useState<any>(null);
+    const [setOpinion] = useState<any>(null);
 
     useEffect(() => {
 
