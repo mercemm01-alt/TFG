@@ -9,13 +9,13 @@ function Inicio() {
     const [lecturaActual, setLecturaActual] = useState<any>(null);
     const [ultimasLecturas, setUltimasLecturas] = useState<any[]>([]);
     const [error, setError] = useState("");
-
+    const BACKEND_URL = "https://tfg-z11h.onrender.com/";
     const idUser = Number(localStorage.getItem("idUser"));
 
     useEffect(() => {
         const cargarDatos = async () => {
             try {
-
+                
                 const perfil = await apiFetch(`/verPerfil/${idUser}`);
                 setUser(perfil);
 
@@ -55,7 +55,7 @@ function Inicio() {
 
                 <div className="img-perfil">
                     <img src={
-                            user.imagen ? `http://localhost:8080/img/${user.imagen}` : "/Recursos/Img/default.jpg"}
+                            user.imagen ? `${BACKEND_URL}/img/${user.imagen}` : "/Recursos/Img/default.jpg"}
                         alt="Img Perfil"
                     />
                 </div>

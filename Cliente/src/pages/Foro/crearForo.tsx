@@ -7,14 +7,14 @@ function CrearForo() {
 
     const navigate = useNavigate();
     const { idForo } = useParams();
-
+    const BACKEND_URL = "https://tfg-z11h.onrender.com/";
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [imagen, setImagen] = useState<File | null>(null);
     const [preview, setPreview] = useState("");
 
     useEffect(() => {
-
+        
         const cargarForo = async () => {
 
             if (!idForo) return;
@@ -26,7 +26,7 @@ function CrearForo() {
                 setDescripcion(data.descripcion);
 
                 if (data.img) {
-                    setPreview(`http://localhost:8080/img/${data.img}`);
+                    setPreview(`${BACKEND_URL}/img/${data.img}`);
                 }
 
             } catch (error) {
@@ -48,8 +48,8 @@ function CrearForo() {
                 form.append("imagen", imagen);
             }
 
-            const url = idForo ? `http://localhost:8080/api/foro/${idForo}?idUser=${localStorage.getItem("idUser")}`
-                : `http://localhost:8080/api/foro?idUser=${localStorage.getItem("idUser")}`;
+            const url = idForo ? `${BACKEND_URL}/api/foro/${idForo}?idUser=${localStorage.getItem("idUser")}`
+                : `${BACKEND_URL}/api/foro?idUser=${localStorage.getItem("idUser")}`;
 
             const metodo = idForo ? "PUT"
                 : "POST";

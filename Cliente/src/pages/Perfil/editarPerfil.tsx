@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { apiFetch } from "../../services/api";
 import "./editarPerfil.css";
 function EditarPerfil() {
-
+    const BACKEND_URL = "https://tfg-z11h.onrender.com/api";
     const [formData, setFormData] = useState({
         user: "",
         contrasena: "",
@@ -35,7 +35,7 @@ function EditarPerfil() {
                 });
 
                 if (data.imagen) {
-                    setPreview(`http://localhost:8080/img/${data.imagen}`);
+                    setPreview(`${BACKEND_URL}/img/${data.imagen}`);
                 }
 
             } catch {
@@ -107,7 +107,7 @@ function EditarPerfil() {
                 form.append("imagen", imagen);
             }
 
-            await fetch(`http://localhost:8080/api/editarPerfil/${idUser}`,
+            await fetch(`${BACKEND_URL}/api/editarPerfil/${idUser}`,
                 {
                     method: "PUT",
                     body: form
