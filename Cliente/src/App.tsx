@@ -17,7 +17,7 @@ import AvisosLegales from "./pages/Legal/avisosLegales";
 function AppContent() {
   const location = useLocation();
 
-  const sinHeader = ["/login", "/registro"];
+  const sinHeader = ["/", "/registro"];
 
   return (
     <div className="app-container">
@@ -26,8 +26,8 @@ function AppContent() {
 
       <main className="contenido">
         <Routes>
-          <Route path="/" element={<Inicio />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/inicio" element={<Inicio />} />
+          <Route path="/" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
           <Route path="/editarPerfil" element={<EditarPerfil />} />
           <Route path="/recomendaciones" element={<Recomendaciones/>}/>
