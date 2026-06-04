@@ -7,7 +7,7 @@ function CrearForo() {
 
     const navigate = useNavigate();
     const { idForo } = useParams();
-    const BACKEND_URL = "https://tfg-z11h.onrender.com/api";
+    const BACKEND_URL = "https://tfg-z11h.onrender.com";
     const [nombre, setNombre] = useState("");
     const [descripcion, setDescripcion] = useState("");
     const [imagen, setImagen] = useState<File | null>(null);
