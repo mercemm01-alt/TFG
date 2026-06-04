@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import type { RegistroDTO } from '../../types/registroDto';
 import { apiFetch } from '../../services/api';
@@ -185,9 +186,9 @@ function Registro() {
                     </p>
 
                     {/* ENLACE LOGIN */}
-                    <a className="enlace" href="/login">
+                    <Link className="enlace" to="/login">
                         ¿Ya tienes cuenta? Inicia sesión
-                    </a>
+                    </Link>
                 </form>
             </div>
         </main>

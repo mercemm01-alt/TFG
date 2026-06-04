@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import type { LoginDTO } from '../../types/loginDto';
 import { apiFetch } from '../../services/api';
 import { useState } from 'react';
@@ -105,9 +106,9 @@ function Login() {
                     </div>
 
                     {/* REGISTRO */}
-                    <a className="enlace" href="/registro">
+                    <Link className="enlace" to="/registro">
                         ¿No tienes cuenta? Regístrate ahora
-                    </a>
+                    </Link>
                     
                 </form>
             </div>
