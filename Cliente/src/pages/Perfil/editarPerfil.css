@@ -105,6 +105,7 @@
 }
 
 .btn-guardar-perfil{
+    background-color: var(--cl-bt);
     min-width:220px;
 }
 
