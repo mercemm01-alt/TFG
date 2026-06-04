@@ -36,7 +36,7 @@ button {
 
 @font-face{
     font-family: Noteworthy;
-    src: url('../Tipografias/Noteworthy-Lt.ttf') format('truetype');
+    src: url('../public/Recursos/Tipografias/Noteworthy-Lt.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
