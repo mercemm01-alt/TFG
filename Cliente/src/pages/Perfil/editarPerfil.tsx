@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { apiFetch } from "../../services/api";
 import "./editarPerfil.css";
 function EditarPerfil() {
-    const BACKEND_URL = "https://tfg-z11h.onrender.com/api";
+    const BACKEND_URL = "https://tfg-1-d2h7.onrender.com/api";
     const [formData, setFormData] = useState({
         user: "",
         contrasena: "",
