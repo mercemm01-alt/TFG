@@ -114,7 +114,7 @@ function EditarPerfil() {
                 }
             );
 
-            navigate("/inicio");
+            navigate("/");
 
         } catch (err: any) {
             setError(err.message || "Error al actualizar perfil");
@@ -129,7 +129,7 @@ function EditarPerfil() {
                 }
             );
             localStorage.clear();
-            navigate("/", { replace: true });
+            navigate("/login", { replace: true });
         } catch (error) {
             console.error("ERROR:", error);
             setError("Error al eliminar la cuenta");

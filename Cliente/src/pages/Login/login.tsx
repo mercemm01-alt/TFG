@@ -6,7 +6,7 @@ import { useState } from 'react';
 import './login.css'
 
 export const loginUser = (datos: LoginDTO) => {
-    return apiFetch("/", {
+    return apiFetch("/login", {
         method: "POST",
         body: JSON.stringify({
             user: datos.user.trim(),
@@ -37,7 +37,7 @@ function Login() {
             localStorage.setItem("user", data.user);
 
             // Redirigir
-            navigate("/inicio");
+            navigate("/");
 
         } catch (err: any) {
             setError(err.message || "Error en el login");

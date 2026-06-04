@@ -186,7 +186,7 @@ function Registro() {
                     </p>
 
                     {/* ENLACE LOGIN */}
-                    <Link className="enlace" to="/">
+                    <Link className="enlace" to="/login">
                         ¿Ya tienes cuenta? Inicia sesión
                     </Link>
                 </form>
