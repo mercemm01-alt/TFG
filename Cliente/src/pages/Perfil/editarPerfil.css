@@ -105,8 +105,19 @@
 }
 
 .btn-guardar-perfil{
-    background-color: var(--cl-bt);
     min-width:220px;
+    background-color: var(--cl-bt);
+    color:white;
+    border:none;
+    border-radius:30px;
+    padding:14px 24px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.btn-guardar-perfil:hover{
+    background-color:#746968; /* tono un poco más oscuro */
 }
 
 .btn-eliminar-cuenta{
